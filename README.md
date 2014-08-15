@@ -1,4 +1,4 @@
-Electrolysm---Chemistry
+Electrolysm-Chemistry
 =======================
 
 The chemistry proportion of Electrolysm
