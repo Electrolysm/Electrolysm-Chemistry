@@ -1,10 +1,12 @@
 package chemistry.electrolysm.block;
 
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
+import chemistry.electrolysm.init.ModItems;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.until.BlockMachineBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -65,5 +67,19 @@ public class BlockBunsenBurner extends BlockMachineBase
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side,
+                                    float sideX, float sideY, float sideZ) {
+        if(world.getTileEntity(x, y, z) instanceof TileEntityBunsenBurner){
+            TileEntityBunsenBurner te = (TileEntityBunsenBurner) world.getTileEntity(x, y, z);
+            if(player.isSneaking() && player.getHeldItem() == null) {
+                te.setHasStand(false);
+                player.dropItem(ModItems.stand, 1);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,5 +1,6 @@
 package chemistry.electrolysm;
 
+import chemistry.electrolysm.handlers.GuiHandler;
 import chemistry.electrolysm.init.ChemistryTab;
 import chemistry.electrolysm.proxy.ClientProxy;
 import chemistry.electrolysm.proxy.CommonProxy;
@@ -10,8 +11,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 
 /**
  * Created by Clarky158 on 15/08/2014.
@@ -29,6 +32,8 @@ public class Chemistry {
 
     public static CreativeTabs creativeTab = new ChemistryTab(CreativeTabs.getNextID(), Referance.MOD_REF.MOD_ID);
     public static CommonProxy proxy = new CommonProxy();
+    @Mod.Instance(Referance.MOD_REF.MOD_ID)
+    public static Chemistry instance;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -40,6 +45,7 @@ public class Chemistry {
     public void init(FMLInitializationEvent event) {
         proxy.registerTileEntities();
         ClientProxy.register();
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
     }
 
     @Mod.EventHandler

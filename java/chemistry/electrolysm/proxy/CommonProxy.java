@@ -1,6 +1,7 @@
 package chemistry.electrolysm.proxy;
 
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
+import chemistry.electrolysm.block.te.TileEntityMassSpec;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.reference.Referance;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,8 +21,12 @@ public class CommonProxy
 {
     public static String MOD_ID_LOWER = Referance.MOD_REF.MOD_ID.toLowerCase().replace("electrolysm | ", "");
     public static ResourceLocation MODEL_BUNSEN_BURNER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBunsenBurner.png");
+    public static ResourceLocation MODEL_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelMassSpec.png");
+
+    public static ResourceLocation GUI_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiMassSpec.png");
 
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityBunsenBurner.class, Names.TileEntity.TE_BUNSEN_BURNER);
+        GameRegistry.registerTileEntity(TileEntityMassSpec.class, Names.TileEntity.TE_MAS_SPEC);
     }
 }

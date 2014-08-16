@@ -1,5 +1,6 @@
 package chemistry.electrolysm.block.te;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -14,13 +15,34 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class TileEntityBunsenBurner extends TileEntity {
 
-    private boolean active;
+    private boolean active = true;
+    private boolean hasStand;
 
     public boolean isActive() {
         return active;
     }
 
     public boolean hasTestTube() {
-        return false;
+        return true;
+    }
+
+    public boolean hasStand() { return hasStand; }
+
+    public void setHasStand(boolean hasStand1) { hasStand = hasStand1; }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+
+        tag.setBoolean("hasStand", hasStand);
+        tag.setBoolean("active", active);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+
+        hasStand = tag.getBoolean("hasStand");
+        active = tag.getBoolean("active");
     }
 }

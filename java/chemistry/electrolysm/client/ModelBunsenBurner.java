@@ -9,13 +9,10 @@ public class ModelBunsenBurner extends ModelBase
   //fields
     ModelRenderer Base;
     ModelRenderer Tube;
-    ModelRenderer leg;
-    ModelRenderer leg1;
-    ModelRenderer leg2;
-    ModelRenderer support;
-    ModelRenderer support1;
-    ModelRenderer support2;
-    ModelRenderer testTube;
+    ModelRenderer Stand1;
+    ModelRenderer Stand2;
+    ModelRenderer TestTube;
+    ModelRenderer Shape1;
   
   public ModelBunsenBurner()
   {
@@ -34,48 +31,30 @@ public class ModelBunsenBurner extends ModelBase
       Tube.setTextureSize(64, 32);
       Tube.mirror = true;
       setRotation(Tube, 0F, 0F, 0F);
-      leg = new ModelRenderer(this, 0, 10);
-      leg.addBox(0F, 0F, 0F, 1, 18, 1);
-      leg.setRotationPoint(-5F, 6F, -0.5F);
-      leg.setTextureSize(64, 32);
-      leg.mirror = true;
-      setRotation(leg, 0F, 0F, 0F);
-      leg1 = new ModelRenderer(this, 0, 10);
-      leg1.addBox(0F, 0F, 0F, 1, 18, 1);
-      leg1.setRotationPoint(4F, 6F, 3F);
-      leg1.setTextureSize(64, 32);
-      leg1.mirror = true;
-      setRotation(leg1, 0F, 0F, 0F);
-      leg2 = new ModelRenderer(this, 0, 10);
-      leg2.addBox(0F, 0F, 0F, 1, 18, 1);
-      leg2.setRotationPoint(4F, 6F, -4F);
-      leg2.setTextureSize(64, 32);
-      leg2.mirror = true;
-      setRotation(leg2, 0F, 0F, 0F);
-      support = new ModelRenderer(this, 5, 10);
-      support.addBox(0F, 0F, 0F, 9, 1, 1);
-      support.setRotationPoint(-4F, 6F, 0F);
-      support.setTextureSize(64, 32);
-      support.mirror = true;
-      setRotation(support, 0F, -0.3578235F, 0.0174533F);
-      support1 = new ModelRenderer(this, 5, 10);
-      support1.addBox(0F, 0F, 0F, 9, 1, 1);
-      support1.setRotationPoint(-4.3F, 6F, -1F);
-      support1.setTextureSize(64, 32);
-      support1.mirror = true;
-      setRotation(support1, 0F, 0.3578274F, 0.0174533F);
-      support2 = new ModelRenderer(this, 5, 14);
-      support2.addBox(0F, 0F, 0F, 1, 1, 7);
-      support2.setRotationPoint(3F, 6F, -3.5F);
-      support2.setTextureSize(64, 32);
-      support2.mirror = true;
-      setRotation(support2, 0F, 0F, 0F);
-      testTube = new ModelRenderer(this, 23, 13);
-      testTube.addBox(0F, 0F, 0F, 2, 10, 2);
-      testTube.setRotationPoint(-1F, 0F, -1F);
-      testTube.setTextureSize(64, 32);
-      testTube.mirror = true;
-      setRotation(testTube, 0F, 0F, 0F);
+      Stand1 = new ModelRenderer(this, 50, 0);
+      Stand1.addBox(0F, 0F, 0F, 1, 26, 1);
+      Stand1.setRotationPoint(5F, -2F, -0.5F);
+      Stand1.setTextureSize(64, 32);
+      Stand1.mirror = true;
+      setRotation(Stand1, 0F, 0F, 0F);
+      Stand2 = new ModelRenderer(this, 6, 28);
+      Stand2.addBox(0F, 0F, 0F, 8, 1, 1);
+      Stand2.setRotationPoint(0F, 2F, 0.25F);
+      Stand2.setTextureSize(64, 32);
+      Stand2.mirror = true;
+      setRotation(Stand2, 0F, 0F, 0F);
+      TestTube = new ModelRenderer(this, 23, 13);
+      TestTube.addBox(0F, 0F, 0F, 2, 10, 2);
+      TestTube.setRotationPoint(-1F, -2F, -1F);
+      TestTube.setTextureSize(64, 32);
+      TestTube.mirror = true;
+      setRotation(TestTube, 0F, 0F, 0F);
+      Shape1 = new ModelRenderer(this, 0, 10);
+      Shape1.addBox(0F, 0F, 0F, 1, 2, 1);
+      Shape1.setRotationPoint(-0.5F, -3F, -0.5F);
+      Shape1.setTextureSize(64, 32);
+      Shape1.mirror = true;
+      setRotation(Shape1, 0F, 0F, 0F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -85,19 +64,6 @@ public class ModelBunsenBurner extends ModelBase
     Base.render(f5);
     Tube.render(f5);
   }
-
-    public void renderTripod(float f5){
-        leg.render(f5);
-        leg1.render(f5);
-        leg2.render(f5);
-        support.render(f5);
-        support1.render(f5);
-        support2.render(f5);
-    }
-
-    public void renderTestTube(float f5){
-        testTube.render(f5);
-    }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
@@ -111,4 +77,13 @@ public class ModelBunsenBurner extends ModelBase
     super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
   }
 
+    public void renderStand(float scale){
+        Stand1.render(scale);
+        Stand2.render(scale);
+    }
+
+    public void renderTestTube(float scale){
+        TestTube.render(scale);
+        Shape1.render(scale);
+    }
 }

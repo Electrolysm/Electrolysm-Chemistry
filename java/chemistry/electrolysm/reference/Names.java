@@ -13,14 +13,18 @@ package chemistry.electrolysm.reference;
 public class Names
 {
     public static class Block{
+        public static String MASS_SPEC = "massSpec";
         public static String BUNSEN_BURNER = "bunsenBurner";
     }
 
     public static class Items {
         public static String TEST_TUBE = "testTube";
+        public static String STAND = "stand";
+        public static String CHEMICAL_TEST_TUBE = "chemicalTestTube";
     }
 
     public static class TileEntity {
+        public static String TE_MAS_SPEC = "TileEntityMassSpec";
         public static String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
     }
 }

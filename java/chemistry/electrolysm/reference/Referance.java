@@ -15,4 +15,8 @@ public class Referance {
         public static final String MOD_ID = "Electrolysm | Chemistry";
         public static final String VERSION = "0.3.42.111";
     }
+
+    public static class GUI {
+        public static int GUI_MASS_SPEC_ID = 0;
+    }
 }

@@ -1,7 +1,10 @@
 package chemistry.electrolysm.init;
 
+import chemistry.electrolysm.items.ItemChemicalTestTube;
+import chemistry.electrolysm.items.ItemStand;
 import chemistry.electrolysm.items.ItemTestTube;
 import chemistry.electrolysm.reference.Names;
+import chemistry.electrolysm.until.ItemBase;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 
@@ -18,7 +21,11 @@ import net.minecraft.item.Item;
 public class ModItems
 {
     public static Item testTube = new ItemTestTube();
+    public static Item stand = new ItemStand();
+    public static Item chemicalTestTube = new ItemChemicalTestTube();
     public static void init(){
         GameRegistry.registerItem(testTube, Names.Items.TEST_TUBE);
+        GameRegistry.registerItem(stand, Names.Items.STAND);
+        GameRegistry.registerItem(chemicalTestTube, Names.Items.CHEMICAL_TEST_TUBE);
     }
 }

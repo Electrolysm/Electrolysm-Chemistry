@@ -25,7 +25,7 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float v4) {
-        renderTripod = tileEntity instanceof TileEntityBunsenBurner;
+        renderTripod = ((TileEntityBunsenBurner)tileEntity).hasStand();
         renderTestTube = ((TileEntityBunsenBurner)tileEntity).hasTestTube();
 
         //System.out.println("render");
@@ -35,7 +35,7 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         model.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         if(renderTripod){
-            model.renderTripod(0.0625F);
+            model.renderStand(0.0625F);
             if(renderTestTube){
                 model.renderTestTube(0.0625F);
             }
