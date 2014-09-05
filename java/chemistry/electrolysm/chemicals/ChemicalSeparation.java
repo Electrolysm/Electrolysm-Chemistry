@@ -56,4 +56,10 @@ public class ChemicalSeparation
         stack.stackTagCompound = chem.writeToNBT();
         return stack;
     }
+
+    public static ItemStack createItemStack(ElementValue value, int amount ,int stackSize){
+        ItemStack stack = new ItemStack(ModItems.chemicalTestTube, stackSize);
+        stack.stackTagCompound = MultiChemical.create(value, amount).writeToNBT();
+        return stack;
+    }
 }

@@ -43,6 +43,17 @@ public class ItemChemicalTestTube extends ItemBase
         if(chem != null && chem.chemical instanceof ElementValue) {
             list.add("Chemical Name: " + yellow + ((ElementValue) chem.chemical).chemicalName);
             list.add("Chemical Symbol: " + yellow + ((ElementValue) chem.chemical).StandardName);
+            list.add("Chemical Type: " + yellow + "Element");
         }
+        else if(chem != null){
+            list.add("Chemical Formula: " + yellow + chem.toString());
+            list.add("Chemical Type: " + yellow + "Compound");
+        }
+    }
+
+    public MultiChemical getChemical(ItemStack stack){
+        NBTTagCompound tag = stack.getTagCompound();
+        MultiChemical chem = MultiChemical.readFromNBT(tag);
+        return chem;
     }
 }

@@ -1,10 +1,14 @@
 package chemistry.electrolysm.block.te;
 
 import chemistry.electrolysm.chemicals.ChemicalSeparation;
+import chemistry.electrolysm.chemicals.Values.CompoundValue;
+import chemistry.electrolysm.chemicals.Values.ElementValue;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
+import chemistry.electrolysm.items.ItemChemicalTestTube;
 import chemistry.electrolysm.until.TileEntityInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import scala.reflect.api.Types;
 
 import java.util.List;
 import java.util.Random;
@@ -41,14 +45,47 @@ public class TileEntityMassSpec extends TileEntityInventory
         //TODO
         super.updateEntity();
 
+        if(worldObj.isRemote) { return; }
+
         ItemStack testTubes = this.getStackInSlot(1);
         ItemStack input = this.getStackInSlot(0);
         List<MultiChemical> chemList = new ChemicalSeparation().getProducts(input);
         Random random = new Random();
 
-        if(testTubes != null && testTubes.stackSize >= 4 && input != null && chemList != null && chemList.size() > 0)
+        if(testTubes != null && testTubes.stackSize >= 1 && input != null && chemList != null && chemList.size() > 0)
         {
             this.produce(chemList, random);
+        }
+        else if(testTubes != null && testTubes.stackSize >= 1 && input != null && chemList == null
+                && input.getItem() instanceof ItemChemicalTestTube){
+            MultiChemical chem = ((ItemChemicalTestTube) input.getItem()).getChemical(input);
+            if(chem.chemical != null && chem.chemical instanceof CompoundValue){
+                produce(((CompoundValue) chem.chemical).elementList);
+            }
+        }
+    }
+
+    private void produce(List<ElementValue> elementList) {
+        for (int j = 0; j < elementList.size(); j++) {
+            System.out.println(j);
+            ItemStack itemChem = ChemicalSeparation.createItemStack(elementList.get(j), 1, elementList.get(j).amount);
+            for (int i = 0; i < 9; i++) {
+                if (this.getStackInSlot(i + 2) == null) {
+                    setInventorySlotContents(i + 2, itemChem);
+                    decrStackSize(0, 1);
+                    decrStackSize(1, 1);
+                    break;
+                } else {
+                    if (this.getStackInSlot(i + 2).isItemEqual(itemChem) &&
+                            this.getStackInSlot(i + 2).stackTagCompound.equals(itemChem.getTagCompound())) {
+                        setInventorySlotContents(i + 2,
+                                ChemicalSeparation.createItemStack(elementList.get(j), 1, this.getStackInSlot(i + 2).stackSize + elementList.get(j).amount));
+                        decrStackSize(0, 1);
+                        decrStackSize(1, 1);
+                        break;
+                    }
+                }
+            }
         }
     }
 

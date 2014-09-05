@@ -12,8 +12,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -44,12 +48,17 @@ public class Chemistry {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.registerTileEntities();
-        ClientProxy.register();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void clientInit(FMLInitializationEvent event){
+        ClientProxy.register();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+        GameRegistry.addSmelting(ModItems.chemicalTestTube, new ItemStack(ModItems.testTube), 0F);
     }
 }
