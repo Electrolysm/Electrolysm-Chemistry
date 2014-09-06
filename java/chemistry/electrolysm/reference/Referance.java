@@ -11,12 +11,14 @@ package chemistry.electrolysm.reference;
  * to the code.
  */
 public class Referance {
-    public class MOD_REF {
+    public static class MOD_REF {
         public static final String MOD_ID = "Electrolysm | Chemistry";
         public static final String VERSION = "0.3.42.111";
+        public static final String MOD_ID_LOWER = MOD_ID.toLowerCase();
     }
 
     public static class GUI {
         public static int GUI_MASS_SPEC_ID = 0;
+        public static int GUI_BUNSEN_BURNER_ID = 1;
     }
 }

@@ -17,7 +17,7 @@ import net.minecraft.world.World;
  * and you have certain rights with respective
  * to the code.
  */
-public class BlockModelBase extends BlockBase{
+public class BlockModelBase extends BlockMachineBase{
 
     public BlockModelBase(Material mat, String name, float harness) {
         super(mat, name, harness);

@@ -23,5 +23,6 @@ public class IllformedEquationException extends Exception
     public void printStackTrace() {
         System.out.println("IllformedEquationException: An incorrect equation syntax has be used!");
         System.out.println("IllformedEquationException: Details: " + message);
+        //super.printStackTrace();
     }
 }

@@ -24,6 +24,7 @@ public class CommonProxy
     public static ResourceLocation MODEL_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelMassSpec.png");
 
     public static ResourceLocation GUI_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiMassSpec.png");
+    public static ResourceLocation GUI_BUNSEN_BURNER = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiBunsenBurner.png");
 
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityBunsenBurner.class, Names.TileEntity.TE_BUNSEN_BURNER);

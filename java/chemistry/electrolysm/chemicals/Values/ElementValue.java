@@ -23,7 +23,13 @@ public class ElementValue extends ChemicalValue {
         StandardName = SF;
         electrons = NoElectrons;
         RAM = mass;
-        amount = amount1;
+        if(amount1 > 0) {
+            amount = amount1;
+        } else {
+            //System.out.println("Error in ElementValue amount init");
+            //new Exception().printStackTrace();
+            amount = 1;
+        }
     }
 
     public ElementValue(String fullName, String SF, int NoElectrons, int mass) {

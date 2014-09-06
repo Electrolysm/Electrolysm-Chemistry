@@ -1,9 +1,12 @@
 package chemistry.electrolysm.block;
 
+import chemistry.electrolysm.Chemistry;
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
 import chemistry.electrolysm.init.ModItems;
 import chemistry.electrolysm.reference.Names;
+import chemistry.electrolysm.reference.Referance;
 import chemistry.electrolysm.until.BlockMachineBase;
+import chemistry.electrolysm.until.BlockModelBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +25,7 @@ import java.util.Random;
  * and you have certain rights with respective
  * to the code.
  */
-public class BlockBunsenBurner extends BlockMachineBase
+public class BlockBunsenBurner extends BlockModelBase
 {
     public BlockBunsenBurner() {
         super(Material.iron, Names.Block.BUNSEN_BURNER, 2.3F);
@@ -77,6 +80,10 @@ public class BlockBunsenBurner extends BlockMachineBase
             if(player.isSneaking() && player.getHeldItem() == null) {
                 te.setHasStand(false);
                 player.dropItem(ModItems.stand, 1);
+                return true;
+            }
+            else {
+                player.openGui(Chemistry.instance, Referance.GUI.GUI_BUNSEN_BURNER_ID, world, x, y, z);
                 return true;
             }
         }

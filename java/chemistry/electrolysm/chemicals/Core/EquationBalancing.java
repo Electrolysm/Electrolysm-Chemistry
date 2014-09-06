@@ -77,7 +77,7 @@ public class EquationBalancing {
                 }
             }
         }
-        //System.out.println(elements + " : " + compounds);
+        //System.out.println(elements + " :::: " + compounds);
         if(elements.size() != 0 && compounds.size() != 0) {
             for (int i = 0; i < elements.size(); i++) {
                 for (int j = 0; j < compounds.size(); j++) {
@@ -98,7 +98,7 @@ public class EquationBalancing {
         } else if(compounds.size() != 0 && elements.size() == 0){
             for (int j = 0; j < compounds.size(); j++) {
                countedElements.add(new CountedElement(compounds.get(j).value, (compounds.get(j).count)));
-               //compounds.remove(j);
+               //compounds.remove(j);0
             }
         } else if(compounds.size() == 0 && elements.size() != 0){
             for (int i = 0; i < elements.size(); i++) {
@@ -106,7 +106,6 @@ public class EquationBalancing {
                 //elements.remove(i);
             }
         }
-        //System.out.println(countedElements);
         return countedElements;
     }
 

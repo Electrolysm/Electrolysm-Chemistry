@@ -1,5 +1,6 @@
 package chemistry.electrolysm.until;
 
+import api.powerSystem.prefab.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -21,6 +22,11 @@ import net.minecraft.tileentity.TileEntity;
 public abstract class TileEntityInventory extends TileEntity implements IInventory//, ISidedInventory
 {
     public ItemStack[] inventory;
+
+    public TileEntityInventory(int invSize){
+        super();
+        inventory = new ItemStack[invSize];
+    }
 
     @Override
     public int getSizeInventory()
@@ -97,9 +103,7 @@ public abstract class TileEntityInventory extends TileEntity implements IInvento
     public abstract boolean isItemValidForSlot(int slot, ItemStack stack);
 
     @Override
-    public void updateEntity(){
-        super.updateEntity();
-    }
+    public void updateEntity(){ super.updateEntity(); }
 
     int[] slots_bottom;
     int[] slots_top;

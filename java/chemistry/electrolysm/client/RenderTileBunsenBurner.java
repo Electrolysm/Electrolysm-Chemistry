@@ -31,6 +31,7 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
         //System.out.println("render");
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+        rotateByMeta(tileEntity.getBlockMetadata());
         bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         model.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
@@ -41,5 +42,28 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
             }
         }
         GL11.glPopMatrix();
+    }
+
+    private void rotateByMeta(int meta) {
+        if(meta == 2)
+        {
+            //south
+            GL11.glRotatef(-90F, 0F, 1F, 0F);
+        }
+        else if(meta == 5)
+        {
+            //west
+           GL11.glRotatef(180F, 0F, 1F, 0F);
+        }
+        else if(meta == 3)
+        {
+            //north
+            GL11.glRotatef(90F, 0F, 1F, 0F);
+        }
+        else if(meta ==4)
+        {
+            //east
+            GL11.glRotatef(0F, 0F, 1F, 0F);
+        }
     }
 }

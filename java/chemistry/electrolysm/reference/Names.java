@@ -27,4 +27,8 @@ public class Names
         public static String TE_MAS_SPEC = "TileEntityMassSpec";
         public static String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
     }
+
+    public class GUI {
+        public static final String BUNSEN_GUI = "Bunsen Burner and Test Tube";
+    }
 }

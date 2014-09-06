@@ -27,53 +27,21 @@ import java.util.Scanner;
  */
 public class Chemistry{
 
-    public static void run() {
+    public static Reaction run(MultiChemical chem1, MultiChemical chem2) {
+        List<MultiChemical> reactedChemicals = reactReactants(checkForErrors(chem1), checkForErrors(chem2));
 
-        String term = "n";
-        while(!term.contains("y")) {
-            print("First Value");
-            String first = read();
-            print("Amount");
-            int amount = Integer.parseInt(read());
-
-            print("Second Value");
-            String second = read();
-            print("Amount");
-            int amount1 = Integer.parseInt(read());
-
-            MultiChemical chem1 = MultiChemical.create(convertToChemical(first), amount);
-            MultiChemical chem2 = MultiChemical.create(convertToChemical(second), amount1);
-
-            print("First: " + chem1);
-            print("Second: " + chem2);
-
-            List<MultiChemical> reactedChemicals = reactReactants(checkForErrors(chem1), checkForErrors(chem2));
-            //System.out.println("Reacted Chemicals: " + reactedChemicals + "");
-
-            if(reactedChemicals != null) {
-
-                List<MultiChemical> outputs = reactedChemicals;
-                List<MultiChemical> inputs = new ArrayList<MultiChemical>(Arrays.asList(chem1, chem2));
-                //equation balancer
-                Reaction reaction = EquationBalancing.balance(new Reaction(inputs, outputs));
-                //System.out.println(reaction);
-                if(reaction != null) {
-                    System.out.println("Input(s): " + String.valueOf(reaction.inputs).replace("[", "").replace("]", "").replace(",", " +"));
-                    System.out.println("Output(s): " + String.valueOf(reaction.outputs).replace("[", "").replace("]", "").replace(",", " +"));
-                    System.out.println("Reaction: " + reaction.formEquation());
-/*
-
-                    EnergyLevels.SuperSubLevel level = new LevelApplication().getLevel(((ElementValue)chem1.chemical).copyWithAmount(1));
-                    int[] levels = (LevelCalculator.calculateShells(((ElementValue)chem1.chemical), LevelCalculator.calculateShells(level)));
-                    for (int i = 0; i < levels.length; i++) {
-                        System.out.println(levels[i]);
-                    }*/
-                    //Newly added levels need fixing
-                }
+        if (reactedChemicals != null) {
+            List<MultiChemical> outputs = reactedChemicals;
+            List<MultiChemical> inputs = new ArrayList<MultiChemical>(Arrays.asList(chem1, chem2));
+            //equation balancer
+            Reaction reaction = EquationBalancing.balance(new Reaction(inputs, outputs));
+            //System.out.println(reaction);
+            if (reaction != null) {
+                return reaction;
+                //Newly added levels need fixing
             }
-            print("Terminate? (y/n)");
-            term = read();
         }
+        return null;
     }
 
     private static MultiChemical checkForErrors(MultiChemical chem) {

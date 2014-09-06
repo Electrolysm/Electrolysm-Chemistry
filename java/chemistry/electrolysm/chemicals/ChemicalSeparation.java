@@ -39,7 +39,7 @@ public class ChemicalSeparation
 
         List<ElementValue> list = Arrays.asList(new ElementRegistry().getChemicalFromSF("C").copyWithAmount(6),
                 new ElementRegistry().getChemicalFromSF("H").copyWithAmount(10),
-                new ElementRegistry().getChemicalFromSF("O").copyWithAmount(5));
+                new ElementRegistry().getChemicalFromSF("O").copyWithAmount(6));
         bind(new ItemStack(Items.potato), Arrays.asList(MultiChemical.create(new CompoundValue(list), 1)));
     }
 

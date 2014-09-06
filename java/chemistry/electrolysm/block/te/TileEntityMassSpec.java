@@ -26,7 +26,7 @@ import java.util.Random;
 public class TileEntityMassSpec extends TileEntityInventory
 {
     public TileEntityMassSpec(){
-        inventory = new ItemStack[11];
+        super(11);
     }
 
     @Override
@@ -67,7 +67,6 @@ public class TileEntityMassSpec extends TileEntityInventory
 
     private void produce(List<ElementValue> elementList) {
         for (int j = 0; j < elementList.size(); j++) {
-            System.out.println(j);
             ItemStack itemChem = ChemicalSeparation.createItemStack(elementList.get(j), 1, elementList.get(j).amount);
             for (int i = 0; i < 9; i++) {
                 if (this.getStackInSlot(i + 2) == null) {

@@ -1,6 +1,7 @@
 package chemistry.electrolysm;
 
 import chemistry.electrolysm.handlers.GuiHandler;
+import chemistry.electrolysm.handlers.network.MessageRegistry;
 import chemistry.electrolysm.init.ChemistryTab;
 import chemistry.electrolysm.proxy.ClientProxy;
 import chemistry.electrolysm.proxy.CommonProxy;
@@ -49,6 +50,7 @@ public class Chemistry {
     public void init(FMLInitializationEvent event) {
         proxy.registerTileEntities();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        MessageRegistry.init();
     }
 
     @SideOnly(Side.CLIENT)
