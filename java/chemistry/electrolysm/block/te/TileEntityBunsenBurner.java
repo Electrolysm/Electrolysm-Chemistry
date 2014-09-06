@@ -8,6 +8,9 @@ import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.until.TileEntityInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -34,8 +37,12 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
         return active;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public boolean hasTestTube() {
-        return true;
+        return getStackInSlot(0) != null || getStackInSlot(1) != null || getStackInSlot(2) != null || getStackInSlot(3) != null;
     }
 
     public boolean hasStand() { return hasStand; }
@@ -63,8 +70,8 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
     @Override
     public void updateEntity() {
-        //TODO
-        //System.out.println(this.getStackInSlot(0) + " : " + this.getStackInSlot(1));
+        if(worldObj.isRemote) { return; }
+        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if (this.getStackInSlot(0) != null && this.getStackInSlot(1) == null && this.getStackInSlot(0).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
             Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
@@ -74,18 +81,21 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
                 return;
             }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
+            this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
         } else if (this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null
                 && this.getStackInSlot(1).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
-            MultiChemical chem2 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
+            MultiChemical chem2 = MultiChemical.readFromNBT(this.getStackInSlot(1).stackTagCompound);
             Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
                     chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize),
                     chem2.copyWithAmount(chem2.amountOfAtoms * getStackInSlot(1).stackSize));
-
             if (reaction == null) {
                 return;
             }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
+            if(reaction.outputs.size() > 1) {
+                this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
+            }
         }
     }
 
@@ -103,5 +113,20 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
         tag.setBoolean("hasStand", hasStand);
         tag.setBoolean("active", active);
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("hasStand", hasStand);
+        tag.setBoolean("active", active);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        setHasStand(pkt.func_148857_g().getBoolean("hasStand"));
+        setActive(pkt.func_148857_g().getBoolean("active"));
+        super.onDataPacket(net, pkt);
     }
 }

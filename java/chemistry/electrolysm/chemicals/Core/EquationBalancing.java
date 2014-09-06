@@ -72,8 +72,10 @@ public class EquationBalancing {
                             (chemSize * ((ElementValue) chemical.chemical).amount)));
                 } else if (chemical.chemical instanceof CompoundValue) {
                     for (int j = 0; j < ((CompoundValue) chemical.chemical).elementList.size(); j++) {
-                        compounds.add(new CountedElement(((CompoundValue) chemical.chemical).elementList.get(j).copyWithAmount(1),
-                                (chemSize * ((CompoundValue) chemical.chemical).elementList.get(j).amount)));
+                        if(((CompoundValue) chemical.chemical).elementList.get(j) != null) {
+                            compounds.add(new CountedElement(((CompoundValue) chemical.chemical).elementList.get(j).copyWithAmount(1),
+                                    (chemSize * ((CompoundValue) chemical.chemical).elementList.get(j).amount)));
+                        }
                     }
                 }
             }

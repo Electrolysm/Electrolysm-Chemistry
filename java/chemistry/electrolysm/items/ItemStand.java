@@ -1,6 +1,8 @@
 package chemistry.electrolysm.items;
 
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
+import chemistry.electrolysm.handlers.network.MessageRegistry;
+import chemistry.electrolysm.handlers.network.message.MessageBunsenBurner;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.until.ItemBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +34,7 @@ public class ItemStand extends ItemBase
             if(!te.hasStand()){
                 te.setHasStand(true);
                 stack.stackSize--;
+                MessageRegistry.INSTANCE.sendToServer(new MessageBunsenBurner(te));
                 return true;
             }
         }

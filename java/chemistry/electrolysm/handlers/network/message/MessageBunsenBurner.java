@@ -43,6 +43,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
 
     @Override
     public IMessage onMessage(MessageBunsenBurner msg, MessageContext ctx) {
+        System.out.print("received");
         if(msg != null) {
             TileEntity te = MinecraftServer.getServer().getEntityWorld().getTileEntity(msg.x, msg.y, msg.z);
             if(te instanceof TileEntityBunsenBurner)

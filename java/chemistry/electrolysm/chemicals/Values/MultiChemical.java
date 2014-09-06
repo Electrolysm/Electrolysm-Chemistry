@@ -35,7 +35,7 @@ public class MultiChemical {
         if (chemical instanceof ElementValue) {
             if (amountOfAtoms == 1) {
                 if (((ElementValue) chemical).amount == 1) {
-                    return ((ElementValue) chemical).StandardName;
+                    //return ((ElementValue) chemical).StandardName;
                 } else {
                     return subscriptNumbers(((ElementValue) chemical).StandardName + ((ElementValue) chemical).amount);
                 }

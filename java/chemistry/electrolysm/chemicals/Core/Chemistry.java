@@ -29,7 +29,6 @@ public class Chemistry{
 
     public static Reaction run(MultiChemical chem1, MultiChemical chem2) {
         List<MultiChemical> reactedChemicals = reactReactants(checkForErrors(chem1), checkForErrors(chem2));
-
         if (reactedChemicals != null) {
             List<MultiChemical> outputs = reactedChemicals;
             List<MultiChemical> inputs = new ArrayList<MultiChemical>(Arrays.asList(chem1, chem2));
@@ -85,7 +84,7 @@ public class Chemistry{
             return thermalDecompReaction((CompoundValue)chem1.chemical, chem1.amountOfAtoms);
         }
         //Synthesis
-        if(chem1.equals(chem2) && chem1.chemical instanceof ElementValue && chem2.chemical instanceof ElementValue)
+        if(chem1 != null && chem2 != null && chem1.equals(chem2) && chem1.chemical instanceof ElementValue && chem2.chemical instanceof ElementValue)
         {
             return synthesisReaction(chem1, chem2);
         }

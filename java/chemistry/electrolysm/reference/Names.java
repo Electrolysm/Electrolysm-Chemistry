@@ -13,22 +13,26 @@ package chemistry.electrolysm.reference;
 public class Names
 {
     public static class Block{
-        public static String MASS_SPEC = "massSpec";
-        public static String BUNSEN_BURNER = "bunsenBurner";
+        public static final String MASS_SPEC = "massSpec";
+        public static final String BUNSEN_BURNER = "bunsenBurner";
     }
 
     public static class Items {
-        public static String TEST_TUBE = "testTube";
-        public static String STAND = "stand";
-        public static String CHEMICAL_TEST_TUBE = "chemicalTestTube";
+        public static final String TEST_TUBE = "testTube";
+        public static final String STAND = "stand";
+        public static final String CHEMICAL_TEST_TUBE = "chemicalTestTube";
     }
 
     public static class TileEntity {
-        public static String TE_MAS_SPEC = "TileEntityMassSpec";
-        public static String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
+        public static final String TE_MAS_SPEC = "TileEntityMassSpec";
+        public static final String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
     }
 
     public class GUI {
         public static final String BUNSEN_GUI = "Bunsen Burner and Test Tube";
+    }
+
+    public class CHAT {
+        public static final String MISSING_STAND = "chat.message.bunsen.standRequired";
     }
 }

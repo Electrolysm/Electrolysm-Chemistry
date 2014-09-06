@@ -28,9 +28,8 @@ import java.util.*;
  * and you have certain rights with respective
  * to the code.
  */
-public class ItemChemicalTestTube extends ItemBase
-{
-    public ItemChemicalTestTube(){
+public class ItemChemicalTestTube extends ItemBase {
+    public ItemChemicalTestTube() {
         super(Names.Items.CHEMICAL_TEST_TUBE);
         this.setHasSubtypes(true);
     }
@@ -40,18 +39,20 @@ public class ItemChemicalTestTube extends ItemBase
         NBTTagCompound tag = stack.getTagCompound();
         MultiChemical chem = MultiChemical.readFromNBT(tag);
         String yellow = ColourEnumHelper.YELLOW.toString();
-        if(chem != null && chem.chemical instanceof ElementValue) {
+        if (chem != null && chem.chemical instanceof ElementValue) {
             list.add("Chemical Name: " + yellow + ((ElementValue) chem.chemical).chemicalName);
             list.add("Chemical Symbol: " + yellow + ((ElementValue) chem.chemical).StandardName);
             list.add("Chemical Type: " + yellow + "Element");
-        }
-        else if(chem != null){
+        } else if (chem != null) {
             list.add("Chemical Formula: " + yellow + chem.toString());
             list.add("Chemical Type: " + yellow + "Compound");
         }
+        if (chem != null) {
+            //list.add(chem.toString());
+        }
     }
 
-    public MultiChemical getChemical(ItemStack stack){
+    public MultiChemical getChemical(ItemStack stack) {
         NBTTagCompound tag = stack.getTagCompound();
         MultiChemical chem = MultiChemical.readFromNBT(tag);
         return chem;
@@ -60,7 +61,7 @@ public class ItemChemicalTestTube extends ItemBase
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         HashMap<String, ElementValue> map = new ElementRegistry().SFMap;
-        for(Map.Entry<String, ElementValue> set : map.entrySet()) {
+        for (Map.Entry<String, ElementValue> set : map.entrySet()) {
             ItemStack stack = new ItemStack(this);
             stack.stackTagCompound = MultiChemical.create(new ElementRegistry().getChemicalFromSF(set.getKey()), 1).writeToNBT();
             list.add(stack);
