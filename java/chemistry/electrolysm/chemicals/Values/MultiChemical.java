@@ -1,6 +1,7 @@
 package chemistry.electrolysm.chemicals.Values;
 
 import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
+import chemistry.electrolysm.chemicals.Rules.Rules;
 import com.sun.org.apache.xpath.internal.operations.Mult;
 import net.minecraft.nbt.NBTTagCompound;
 import scala.xml.Elem;
@@ -40,7 +41,11 @@ public class MultiChemical {
                     return subscriptNumbers(((ElementValue) chemical).StandardName + ((ElementValue) chemical).amount);
                 }
             }
-            return amountOfAtoms + ((ElementValue) chemical).StandardName;
+            if(amountOfAtoms > 1) {
+                return amountOfAtoms + ((ElementValue) chemical).StandardName;
+            } else {
+                return ((ElementValue) chemical).StandardName;
+            }
         } else if (chemical instanceof CompoundValue) {
             List<ElementValue> list = ((CompoundValue) chemical).elementList;
             String formula = "";
@@ -80,7 +85,7 @@ public class MultiChemical {
         if(amount <= 0) {
             return null;
         }
-        return new MultiChemical(chemicalValue, amount);
+        return new Rules().applyDiatomicRule(new MultiChemical(chemicalValue, amount));
     }
 
     @Override

@@ -41,14 +41,14 @@ public class ItemChemicalTestTube extends ItemBase {
         String yellow = ColourEnumHelper.YELLOW.toString();
         if (chem != null && chem.chemical instanceof ElementValue) {
             list.add("Chemical Name: " + yellow + ((ElementValue) chem.chemical).chemicalName);
-            list.add("Chemical Symbol: " + yellow + ((ElementValue) chem.chemical).StandardName);
+            list.add("Chemical Symbol: " + yellow + chem.toBasicString());
             list.add("Chemical Type: " + yellow + "Element");
         } else if (chem != null) {
             list.add("Chemical Formula: " + yellow + chem.toString());
             list.add("Chemical Type: " + yellow + "Compound");
         }
         if (chem != null) {
-            //list.add(chem.toString());
+            //list.add(String.valueOf(((ElementValue) chem.chemical).amount));
         }
     }
 

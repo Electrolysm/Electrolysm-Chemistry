@@ -70,6 +70,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
     @Override
     public void updateEntity() {
+        this.setActive(this.hasTestTube());
         if(worldObj.isRemote) { return; }
         //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if (this.getStackInSlot(0) != null && this.getStackInSlot(1) == null && this.getStackInSlot(0).stackTagCompound != null) {
@@ -82,6 +83,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
             this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
+            decrStackSize(0, chem1.amountOfAtoms);
         } else if (this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null
                 && this.getStackInSlot(1).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
@@ -96,6 +98,8 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             if(reaction.outputs.size() > 1) {
                 this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
             }
+            decrStackSize(0, chem1.amountOfAtoms);
+            decrStackSize(1, chem2.amountOfAtoms);
         }
     }
 
