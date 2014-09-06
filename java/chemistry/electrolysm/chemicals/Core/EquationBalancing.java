@@ -64,16 +64,17 @@ public class EquationBalancing {
         List<CountedElement> compounds = new ArrayList<CountedElement>();
         for (int i = 0; i < chemicalList.size(); i++) {
             MultiChemical chemical = chemicalList.get(i);
-            int chemSize = chemical.amountOfAtoms;
-            //System.out.println("ChemSize: " + chemSize);
-            if(chemical.chemical instanceof ElementValue){
-                elements.add(new CountedElement(((ElementValue) chemical.chemical).copyWithAmount(1),
-                        (chemSize * ((ElementValue) chemical.chemical).amount)));
-            }
-            else if(chemical.chemical instanceof CompoundValue){
-                for (int j = 0; j < ((CompoundValue) chemical.chemical).elementList.size(); j++) {
-                    compounds.add(new CountedElement(((CompoundValue) chemical.chemical).elementList.get(j).copyWithAmount(1),
-                            (chemSize * ((CompoundValue) chemical.chemical).elementList.get(j).amount)));
+            if (chemical != null) {
+                int chemSize = chemical.amountOfAtoms;
+                //System.out.println("ChemSize: " + chemSize);
+                if (chemical.chemical instanceof ElementValue) {
+                    elements.add(new CountedElement(((ElementValue) chemical.chemical).copyWithAmount(1),
+                            (chemSize * ((ElementValue) chemical.chemical).amount)));
+                } else if (chemical.chemical instanceof CompoundValue) {
+                    for (int j = 0; j < ((CompoundValue) chemical.chemical).elementList.size(); j++) {
+                        compounds.add(new CountedElement(((CompoundValue) chemical.chemical).elementList.get(j).copyWithAmount(1),
+                                (chemSize * ((CompoundValue) chemical.chemical).elementList.get(j).amount)));
+                    }
                 }
             }
         }

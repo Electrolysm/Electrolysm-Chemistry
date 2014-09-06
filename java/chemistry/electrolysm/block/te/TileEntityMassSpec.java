@@ -59,7 +59,7 @@ public class TileEntityMassSpec extends TileEntityInventory
         else if(testTubes != null && testTubes.stackSize >= 1 && input != null && chemList == null
                 && input.getItem() instanceof ItemChemicalTestTube){
             MultiChemical chem = ((ItemChemicalTestTube) input.getItem()).getChemical(input);
-            if(chem.chemical != null && chem.chemical instanceof CompoundValue){
+            if(chem != null && chem.chemical != null && chem.chemical instanceof CompoundValue){
                 produce(((CompoundValue) chem.chemical).elementList);
             }
         }

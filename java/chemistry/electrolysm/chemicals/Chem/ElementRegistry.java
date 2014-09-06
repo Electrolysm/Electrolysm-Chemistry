@@ -15,7 +15,7 @@ import java.util.HashMap;
  * to the code.
  */
 public class ElementRegistry {
-    HashMap<String, ElementValue> SFMap = new HashMap<String, ElementValue>();
+    public HashMap<String, ElementValue> SFMap = new HashMap<String, ElementValue>();
 
     public ElementRegistry(){
         put("Hydrogen", "H", 1, 1);
@@ -31,7 +31,7 @@ public class ElementRegistry {
         put("Sodium", "Na", 11, 23);
         put("Magnesium", "Mg", 12, 24);
         put("Aluminium", "Al", 13, 27);
-        put("Silicon", "S", 14, 28);
+        put("Silicon", "Si", 14, 28);
         put("Phosphorus", "P", 15, 31);
         put("Sulphur", "S", 16, 32);
         put("Chlorine", "Cl", 17, 35);

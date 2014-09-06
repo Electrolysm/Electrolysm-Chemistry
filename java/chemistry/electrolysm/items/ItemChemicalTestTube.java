@@ -9,14 +9,14 @@ import chemistry.electrolysm.chemicals.Values.MultiChemical;
 import chemistry.electrolysm.handlers.ColourEnumHelper;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.until.ItemBase;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.lang.model.element.Element;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Clarky158 on 16/08/2014.
@@ -55,5 +55,15 @@ public class ItemChemicalTestTube extends ItemBase
         NBTTagCompound tag = stack.getTagCompound();
         MultiChemical chem = MultiChemical.readFromNBT(tag);
         return chem;
+    }
+
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
+        HashMap<String, ElementValue> map = new ElementRegistry().SFMap;
+        for(Map.Entry<String, ElementValue> set : map.entrySet()) {
+            ItemStack stack = new ItemStack(this);
+            stack.stackTagCompound = MultiChemical.create(new ElementRegistry().getChemicalFromSF(set.getKey()), 1).writeToNBT();
+            list.add(stack);
+        }
     }
 }

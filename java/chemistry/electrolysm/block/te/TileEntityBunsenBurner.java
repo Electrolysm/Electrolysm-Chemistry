@@ -65,20 +65,27 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
     public void updateEntity() {
         //TODO
         //System.out.println(this.getStackInSlot(0) + " : " + this.getStackInSlot(1));
-        if(this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null &&
-                this.getStackInSlot(1).stackTagCompound != null){
+        if (this.getStackInSlot(0) != null && this.getStackInSlot(1) == null && this.getStackInSlot(0).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
-            MultiChemical chem2 = MultiChemical.readFromNBT(this.getStackInSlot(1).stackTagCompound);
+            Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
+                    chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize), null);
+
+            if (reaction == null) {
+                return;
+            }
+            this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
+        } else if (this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null
+                && this.getStackInSlot(1).stackTagCompound != null) {
+            MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
+            MultiChemical chem2 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
             Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
                     chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize),
                     chem2.copyWithAmount(chem2.amountOfAtoms * getStackInSlot(1).stackSize));
 
-            if(reaction == null) { return; }
+            if (reaction == null) {
+                return;
+            }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
-            //this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1)));
-            //System.out.println(chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize).toBasicString());
-
-            //chemistry.electrolysm.chemicals.Core.Chemistry.run(e.C, e.O.copyWithAmount(2));
         }
     }
 

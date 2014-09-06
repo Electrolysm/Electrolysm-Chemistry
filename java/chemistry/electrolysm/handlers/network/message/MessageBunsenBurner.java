@@ -23,6 +23,8 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
         hasStand = te.hasStand();
     }
 
+    public MessageBunsenBurner(){ }
+
     @Override
     public void fromBytes(ByteBuf buf) {
         x = buf.readInt();

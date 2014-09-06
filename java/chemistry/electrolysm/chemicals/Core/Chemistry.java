@@ -90,7 +90,7 @@ public class Chemistry{
             return synthesisReaction(chem1, chem2);
         }
         //Synthesis
-        else if(chem1.chemical instanceof ElementValue && chem2.chemical instanceof ElementValue) {
+        else if(chem1 != null && chem2 != null && chem1.chemical instanceof ElementValue && chem2.chemical instanceof ElementValue) {
             return synthesisReaction(chem1, chem2);
         }
         //SingleDisplacement;
