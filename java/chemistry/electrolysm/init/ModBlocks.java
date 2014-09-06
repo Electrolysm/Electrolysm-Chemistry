@@ -2,6 +2,7 @@ package chemistry.electrolysm.init;
 
 import chemistry.electrolysm.block.BlockBunsenBurner;
 import chemistry.electrolysm.block.BlockMassSpec;
+import chemistry.electrolysm.block.BlockPhosphorusTorch;
 import chemistry.electrolysm.reference.Names;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -20,9 +21,11 @@ public class ModBlocks {
 
     public static Block bunsenBurner = new BlockBunsenBurner();
     public static Block massSpec = new BlockMassSpec();
+    public static Block phosphorusTorch =  new BlockPhosphorusTorch();
 
     public static void init(){
         GameRegistry.registerBlock(bunsenBurner, Names.Block.BUNSEN_BURNER);
         GameRegistry.registerBlock(massSpec, Names.Block.MASS_SPEC);
+        GameRegistry.registerBlock(phosphorusTorch, Names.Block.PHOSPHORUS_TORCH);
     }
 }

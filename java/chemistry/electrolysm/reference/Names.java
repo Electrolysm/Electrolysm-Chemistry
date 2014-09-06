@@ -15,6 +15,7 @@ public class Names
     public static class Block{
         public static final String MASS_SPEC = "massSpec";
         public static final String BUNSEN_BURNER = "bunsenBurner";
+        public static final String PHOSPHORUS_TORCH = "phosphorusTorch";
     }
 
     public static class Items {

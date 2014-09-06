@@ -79,11 +79,13 @@ public class BlockBunsenBurner extends BlockModelBase
         if(world.getTileEntity(x, y, z) instanceof TileEntityBunsenBurner){
             TileEntityBunsenBurner te = (TileEntityBunsenBurner) world.getTileEntity(x, y, z);
             if(player.isSneaking() && player.getHeldItem() == null) {
-                if(!world.isRemote) {
-                    player.dropItem(ModItems.stand, 1);
+                if(te.hasStand()) {
+                    if (!world.isRemote) {
+                        player.dropItem(ModItems.stand, 1);
+                    }
+                    te.setHasStand(false);
+                    return true;
                 }
-                te.setHasStand(false);
-                return true;
             }
             else {
                 if(te.hasStand()) {
