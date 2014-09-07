@@ -16,6 +16,7 @@ public class Names
         public static final String MASS_SPEC = "massSpec";
         public static final String BUNSEN_BURNER = "bunsenBurner";
         public static final String PHOSPHORUS_TORCH = "phosphorusTorch";
+        public static final String ATOMIC_COMPRESSOR = "atomicCompressor";
     }
 
     public static class Items {
@@ -27,6 +28,7 @@ public class Names
     public static class TileEntity {
         public static final String TE_MAS_SPEC = "TileEntityMassSpec";
         public static final String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
+        public static final String TE_ATOMIC_COMPRESSOR = "TileEntityAtomicCompressor";
     }
 
     public class GUI {

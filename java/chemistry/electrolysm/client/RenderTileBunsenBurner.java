@@ -30,6 +30,7 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
 
         //System.out.println("render");
         GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         rotateByMeta(tileEntity.getBlockMetadata());
         bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);

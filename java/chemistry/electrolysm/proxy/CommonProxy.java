@@ -1,5 +1,6 @@
 package chemistry.electrolysm.proxy;
 
+import chemistry.electrolysm.block.te.TileEntityAtomicCompressor;
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
 import chemistry.electrolysm.block.te.TileEntityMassSpec;
 import chemistry.electrolysm.reference.Names;
@@ -29,5 +30,6 @@ public class CommonProxy
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityBunsenBurner.class, Names.TileEntity.TE_BUNSEN_BURNER);
         GameRegistry.registerTileEntity(TileEntityMassSpec.class, Names.TileEntity.TE_MAS_SPEC);
+        GameRegistry.registerTileEntity(TileEntityAtomicCompressor.class, Names.TileEntity.TE_ATOMIC_COMPRESSOR);
     }
 }

@@ -14,20 +14,27 @@ public class EntityPhosphorusFlameFX extends EntityFX{
 
     private float flameScale;
 
-    public EntityPhosphorusFlameFX(World world, double d1, double d2, double d3, double d4, double d5, double d6) {
-        super(world, d1, d2, d3, d4, d5, d6);
-        this.motionX = this.motionX * 0.009999999776482582D + d4;
-        this.motionY = this.motionY * 0.009999999776482582D + d5;
-        this.motionZ = this.motionZ * 0.009999999776482582D + d6;
-        double d = d1 + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
-        d = d2 + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
-        d = d3 + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
+    public EntityPhosphorusFlameFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ,
+                                   float red, float green, float blue) {
+        super(world, x, y, z, motionX, motionY, motionZ);
+        this.setParticleIcon(ModBlocks.phosphorusTorch.iconFX);
+        this.motionX = this.motionX * 0.009999999776482582D + motionX;
+        this.motionY = this.motionY * 0.009999999776482582D + motionY;
+        this.motionZ = this.motionZ * 0.009999999776482582D + motionZ;
+        double d = x + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
+        d = y + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
+        d = z + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         this.flameScale = this.particleScale;
-        this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
+
+        particleRed = red;
+        particleGreen = green;
+        particleBlue = blue;
+
         this.noClip = true;
-        this.setParticleIcon(((BlockPhosphorusTorch)ModBlocks.phosphorusTorch).iconFX);
     }
+
+    public EntityPhosphorusFlameFX() { this(null, 0, 0, 0, 0, 0, 0, 0, 0, 0); };
 
     @Override
     public int getFXLayer() {
