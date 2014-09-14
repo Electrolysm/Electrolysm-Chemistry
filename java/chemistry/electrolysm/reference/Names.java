@@ -35,7 +35,11 @@ public class Names
         public static final String BUNSEN_GUI = "Bunsen Burner and Test Tube";
     }
 
-    public class CHAT {
+    public class MESSAGES {
         public static final String MISSING_STAND = "chat.message.bunsen.standRequired";
+        public static final String GUI_MSG_WAITING = "message.gui.massSpec.waiting";
+        public static final String GUI_MSG_WORKING = "message.gui.massSpec.working";
+        public static final String GUI_MSG_FULL = "message.gui.massSpec.invFull";
+        public static final String GUI_MSG_NO_ENERGY = "message.gui.massSpec.noEnergy";
     }
 }

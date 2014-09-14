@@ -6,6 +6,7 @@ import chemistry.electrolysm.chemicals.Core.Reaction;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.until.TileEntityInventory;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -68,22 +69,44 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
         return false;
     }
 
+    double fuelTick = 0;
+    double fuelTimer = 0;
+    public int fuelCount = 0;
+
     @Override
     public void updateEntity() {
+
         this.setActive(this.hasTestTube());
         if(worldObj.isRemote) { return; }
+        if(active || !active){
+            double temp = getTemp();
+            fuelTick = getFuelRate(temp);
+            System.out.println(fuelCount);
+            if(fuelTick != 0 && this.getStackInSlot(4) != null){
+                if(fuelTimer >= fuelTick){
+                    fuelTimer = 0;
+                    fuelCount++;
+                    decrStackSize(4, 1);
+                } else {
+                    fuelTimer += 1;
+                }
+                worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            }
+        }
         //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if (this.getStackInSlot(0) != null && this.getStackInSlot(1) == null && this.getStackInSlot(0).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
             Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
                     chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize), null);
 
-            if (reaction == null) {
+            if (!this.isTempSufficiant(reaction)) {
                 return;
             }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
             this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
             decrStackSize(0, chem1.amountOfAtoms);
+            fuelCount -= getTemp() / 8;
+
         } else if (this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null
                 && this.getStackInSlot(1).stackTagCompound != null) {
             MultiChemical chem1 = MultiChemical.readFromNBT(this.getStackInSlot(0).stackTagCompound);
@@ -91,7 +114,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             Reaction reaction = chemistry.electrolysm.chemicals.Core.Chemistry.run(
                     chem1.copyWithAmount(chem1.amountOfAtoms * getStackInSlot(0).stackSize),
                     chem2.copyWithAmount(chem2.amountOfAtoms * getStackInSlot(1).stackSize));
-            if (reaction == null) {
+            if (!this.isTempSufficiant(reaction)) {
                 return;
             }
             this.setInventorySlotContents(2, ChemicalSeparation.createItemStack(reaction.outputs.get(0), reaction.outputs.get(0).amountOfAtoms));
@@ -100,7 +123,26 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             }
             decrStackSize(0, chem1.amountOfAtoms);
             decrStackSize(1, chem2.amountOfAtoms);
+            fuelCount -= getTemp() / 8;
         }
+    }
+
+    private double getFuelRate(double temp) {
+        return Math.pow((5000 / (temp + 1)), (1));
+    }
+
+    private boolean isTempSufficiant(Reaction reaction) {
+        if(reaction == null) {
+            return false;
+        }
+        double temp = this.getTemp();
+        float energies = reaction.getEnergies();
+        float reqTemp = convertToTempK(energies);
+        return temp >= reqTemp && fuelCount >= (temp / 8);
+    }
+
+    private float convertToTempK(float energies) {
+        return (float) Math.pow(Math.abs(energies), 1);
     }
 
     @Override
@@ -109,6 +151,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
         hasStand = tag.getBoolean("hasStand");
         active = tag.getBoolean("active");
+        fuelCount = tag.getInteger("fuelCount");
     }
 
     @Override
@@ -117,6 +160,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
         tag.setBoolean("hasStand", hasStand);
         tag.setBoolean("active", active);
+        tag.setInteger("fuelCount", fuelCount);
     }
 
     @Override
@@ -124,6 +168,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setBoolean("hasStand", hasStand);
         tag.setBoolean("active", active);
+        tag.setInteger("fuelCount", fuelCount);
         return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
     }
 
@@ -131,6 +176,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         setHasStand(pkt.func_148857_g().getBoolean("hasStand"));
         setActive(pkt.func_148857_g().getBoolean("active"));
+        fuelCount = pkt.func_148857_g().getInteger("fuelCount");
         super.onDataPacket(net, pkt);
     }
 }

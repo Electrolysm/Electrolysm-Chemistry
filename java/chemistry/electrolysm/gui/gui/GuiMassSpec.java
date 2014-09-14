@@ -2,8 +2,10 @@ package chemistry.electrolysm.gui.gui;
 
 import chemistry.electrolysm.block.te.TileEntityMassSpec;
 import chemistry.electrolysm.gui.container.ContainerMassSpec;
+import chemistry.electrolysm.handlers.ColourEnumHelper;
 import chemistry.electrolysm.proxy.CommonProxy;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import org.lwjgl.opengl.GL11;
 
@@ -32,10 +34,16 @@ public class GuiMassSpec extends GuiContainer{
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+
+        //Draw progress bar
+        int progress = (entity.timer * 114) / entity.maxTime;
+        if(progress > 0) {
+            this.drawTexturedModalRect(x + 56, y + 9, 5, 227, progress, 16);
+        }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j) {
-        //fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
+        this.drawCenteredString(fontRendererObj, ColourEnumHelper.WHITE + I18n.format(entity.status, new Object[0]), 85, 32, 4210752);
     }
 }

@@ -26,7 +26,7 @@ public class GuiBunsenBurner extends GuiContainer
 
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
-        buttonList.add(new GuiSlider(0, x + 17, y + 60, 143, 20, "Temperature: ", "K", 0D, 6000D, entity.getTemp(), false, true,
+        buttonList.add(new GuiSlider(0, x + 17, y + 60, 143, 20, "Temperature: ", "K", 0D, 1500D, entity.getTemp(), false, true,
                 new GuiTempSlider(entity)));
     }
 
@@ -38,5 +38,7 @@ public class GuiBunsenBurner extends GuiContainer
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+
+        fontRendererObj.drawString("Fuel Count: " + entity.fuelCount, x + 35, y + 12, 4210752);
     }
 }

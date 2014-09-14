@@ -1,5 +1,7 @@
 package chemistry.electrolysm;
 
+import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
+import chemistry.electrolysm.chemicals.ChemicalSeparation;
 import chemistry.electrolysm.handlers.GuiHandler;
 import chemistry.electrolysm.handlers.network.MessageRegistry;
 import chemistry.electrolysm.init.ChemistryTab;
@@ -51,6 +53,8 @@ public class Chemistry {
         proxy.registerTileEntities();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         MessageRegistry.init();
+        new ElementRegistry(event);
+        new ChemicalSeparation(event);
     }
 
     @SideOnly(Side.CLIENT)

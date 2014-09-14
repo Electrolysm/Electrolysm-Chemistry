@@ -1,0 +1,5 @@
+# Message
+message.gui.massSpec.waiting=Waiting...
+message.gui.massSpec.working=Working
+message.gui.massSpec.invFull=Full Inventory
+message.gui.massSpec.noEnergy=No Energy

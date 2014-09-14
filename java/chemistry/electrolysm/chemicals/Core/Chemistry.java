@@ -35,12 +35,28 @@ public class Chemistry{
             //equation balancer
             Reaction reaction = EquationBalancing.balance(new Reaction(inputs, outputs));
             //System.out.println(reaction);
+            float energies = calcultateEnegies(reaction, chem1, chem2);
             if (reaction != null) {
-                return reaction;
+                return reaction.setEnergy(energies);
                 //Newly added levels need fixing
             }
         }
         return null;
+    }
+
+    private static float calcultateEnegies(Reaction reaction, MultiChemical chem1, MultiChemical chem2) {
+        if(reaction == null){
+            return 0;
+        }
+        //get electron transfer.
+        if(chem1 != null && chem2 != null && chem1.chemical instanceof ElementValue && chem2.chemical instanceof ElementValue) {
+            int chem1_outer = applyShellWorkings((ElementValue) chem1.chemical) * getRatio(chem1.amountOfAtoms, chem2.amountOfAtoms)[0];
+            int chem2_outer = applyShellWorkings((ElementValue) chem2.chemical) * getRatio(chem1.amountOfAtoms, chem2.amountOfAtoms)[1];
+
+            int calculated = chem1_outer + chem2_outer;
+            return (float) (Math.cos(calculated) * (Math.pow(calculated, 2) * 1.983));
+        }
+        return 0;
     }
 
     private static MultiChemical checkForErrors(MultiChemical chem) {

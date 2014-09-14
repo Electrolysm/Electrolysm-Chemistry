@@ -19,6 +19,7 @@ public class Reaction
 {
     public List<MultiChemical> inputs;
     public List<MultiChemical> outputs;
+    private float energies;
 
     public Reaction(List<MultiChemical> in, List<MultiChemical> out)
     {
@@ -31,5 +32,18 @@ public class Reaction
         String out = String.valueOf(outputs).replace("[", "").replace("]", "").replace(",", " +");
         String arrow = "\u2192";
         return in + " " + arrow + " " + out;
+    }
+
+    public float getEnergies() {
+        return energies;
+    }
+
+    public void setEnergies(float energies) {
+        this.energies = energies;
+    }
+
+    public Reaction setEnergy(float e){
+        this.energies = e;
+        return this;
     }
 }
