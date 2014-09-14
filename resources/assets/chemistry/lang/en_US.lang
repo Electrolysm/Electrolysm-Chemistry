@@ -3,3 +3,5 @@ message.gui.massSpec.waiting=Waiting...
 message.gui.massSpec.working=Working
 message.gui.massSpec.invFull=Full Inventory
 message.gui.massSpec.noEnergy=No Energy
+#Chat
+chat.message.bunsen.standRequired=This burner requires a stand to function.

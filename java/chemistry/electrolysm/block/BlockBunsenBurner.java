@@ -9,6 +9,7 @@ import chemistry.electrolysm.until.BlockMachineBase;
 import chemistry.electrolysm.until.BlockModelBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
@@ -93,7 +94,7 @@ public class BlockBunsenBurner extends BlockModelBase
                     return true;
                 } else {
                     if(world.isRemote) {
-                        player.addChatMessage(new ChatComponentTranslation(Names.CHAT.MISSING_STAND));
+                        player.addChatMessage(new ChatComponentTranslation(I18n.format(Names.MESSAGES.MISSING_STAND)));
                     }
                 }
             }
