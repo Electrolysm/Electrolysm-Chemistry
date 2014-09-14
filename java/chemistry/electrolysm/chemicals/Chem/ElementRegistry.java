@@ -1,8 +1,11 @@
 package chemistry.electrolysm.chemicals.Chem;
 
 import chemistry.electrolysm.chemicals.Values.ElementValue;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Clarky158 on 11/08/2014.
@@ -15,9 +18,10 @@ import java.util.HashMap;
  * to the code.
  */
 public class ElementRegistry {
-    public HashMap<String, ElementValue> SFMap = new HashMap<String, ElementValue>();
+    public static HashMap<String, ElementValue> SFMap = new HashMap<String, ElementValue>();
+    public static List<ElementValue> list = new ArrayList<ElementValue>(200);
 
-    public ElementRegistry(){
+    public ElementRegistry(FMLInitializationEvent event){
         put("Hydrogen", "H", 1, 1);
         put("Helium", "He", 2, 4);
         put("Lithium", "Li", 3, 7);
@@ -66,13 +70,11 @@ public class ElementRegistry {
         put("Palladium", "Pd", 46, 106);
         put("Silver", "Ag", 47, 108);
         put("Cadmium", "Cd", 48, 112);
-
         put("Indium", "In", 49, 115);
         put("Tin", "Sn", 50, 119);
         put("Antimony", "Sb", 51, 122);
         put("Tellurium", "Te", 52, 128);
         put("Iodine", "I", 53, 127);
-
         put("Xenon", "Xe", 54, 131);
         put("Caesium", "Cs", 55, 133);
         put("Barium", "Ba", 56, 137);
@@ -144,7 +146,7 @@ public class ElementRegistry {
         SFMap.put(SF, new ElementValue(name, SF, electrons, mass));
     }
 
-    public ElementValue getChemicalFromSF(String first) {
+    public static ElementValue getChemicalFromSF(String first) {
         return SFMap.get(first);
     }
 }

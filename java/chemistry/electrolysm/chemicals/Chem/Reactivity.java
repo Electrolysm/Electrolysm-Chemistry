@@ -21,21 +21,21 @@ public class Reactivity {
 
     public Reactivity()
     {
-        addReactivity(0, new ElementRegistry().getChemicalFromSF("Pt"));
-        addReactivity(1, new ElementRegistry().getChemicalFromSF("Au"));
-        addReactivity(2, new ElementRegistry().getChemicalFromSF("Ag"));
-        addReactivity(3, new ElementRegistry().getChemicalFromSF("Hg"));
-        addReactivity(4, new ElementRegistry().getChemicalFromSF("Cu"));
-        addReactivity(5, new ElementRegistry().getChemicalFromSF("H"));
-        addReactivity(6, new ElementRegistry().getChemicalFromSF("Pb"));
-        addReactivity(7, new ElementRegistry().getChemicalFromSF("Sn"));
-        addReactivity(8, new ElementRegistry().getChemicalFromSF("Fe"));
-        addReactivity(9, new ElementRegistry().getChemicalFromSF("Zn"));
-        addReactivity(10, new ElementRegistry().getChemicalFromSF("Al"));
-        addReactivity(11, new ElementRegistry().getChemicalFromSF("Mg"));
-        addReactivity(12, new ElementRegistry().getChemicalFromSF("Ca"));
-        addReactivity(13, new ElementRegistry().getChemicalFromSF("Na"));
-        addReactivity(14, new ElementRegistry().getChemicalFromSF("K"));
+        addReactivity(0, ElementRegistry.getChemicalFromSF("Pt"));
+        addReactivity(1, ElementRegistry.getChemicalFromSF("Au"));
+        addReactivity(2, ElementRegistry.getChemicalFromSF("Ag"));
+        addReactivity(3, ElementRegistry.getChemicalFromSF("Hg"));
+        addReactivity(4, ElementRegistry.getChemicalFromSF("Cu"));
+        addReactivity(5, ElementRegistry.getChemicalFromSF("H"));
+        addReactivity(6, ElementRegistry.getChemicalFromSF("Pb"));
+        addReactivity(7, ElementRegistry.getChemicalFromSF("Sn"));
+        addReactivity(8, ElementRegistry.getChemicalFromSF("Fe"));
+        addReactivity(9, ElementRegistry.getChemicalFromSF("Zn"));
+        addReactivity(10, ElementRegistry.getChemicalFromSF("Al"));
+        addReactivity(11, ElementRegistry.getChemicalFromSF("Mg"));
+        addReactivity(12, ElementRegistry.getChemicalFromSF("Ca"));
+        addReactivity(13, ElementRegistry.getChemicalFromSF("Na"));
+        addReactivity(14, ElementRegistry.getChemicalFromSF("K"));
     }
 
     //14 == greatist

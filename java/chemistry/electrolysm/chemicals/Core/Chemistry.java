@@ -99,7 +99,7 @@ public class Chemistry{
         //DoubleDisplacement
         //Combustion
         else if(chem1 != null && chem2 != null && chem2.chemical instanceof ElementValue){
-            if(((ElementValue)chem2.chemical).copyWithAmount(1).equals(new ElementRegistry().getChemicalFromSF("O"))){
+            if(((ElementValue)chem2.chemical).copyWithAmount(1).equals(ElementRegistry.getChemicalFromSF("O"))){
 
             }
         }
@@ -245,17 +245,17 @@ public class Chemistry{
             List<ElementValue> elementList = new ArrayList<ElementValue>();
             for (int i = 0; i < indevElements.length; i++) {
                 if (indevElements[i].matches(".*\\d.*")) {
-                    ElementValue base = new ElementRegistry().getChemicalFromSF(indevElements[i].replaceAll("[0-9]", ""));
+                    ElementValue base = ElementRegistry.getChemicalFromSF(indevElements[i].replaceAll("[0-9]", ""));
                     elementList.add(base.copyWithAmount(Integer.parseInt(indevElements[i].replaceAll("[A-Za-z]", ""))));
                 } else {
-                    elementList.add(new ElementRegistry().getChemicalFromSF(indevElements[i]));
+                    elementList.add(ElementRegistry.getChemicalFromSF(indevElements[i]));
                 }
             }
             return new CompoundValue(elementList);
         }
         String data = first;
-        if (new ElementRegistry().getChemicalFromSF(data.replaceAll("[0-9]", "")) != null) {
-            ElementValue value = new ElementRegistry().getChemicalFromSF(data.replaceAll("[0-9]", ""));
+        if (ElementRegistry.getChemicalFromSF(data.replaceAll("[0-9]", "")) != null) {
+            ElementValue value = ElementRegistry.getChemicalFromSF(data.replaceAll("[0-9]", ""));
             if (value != null && (!(first.replaceAll("[A-Za-z]", "").equals(""))) && first.replaceAll("[A-Za-z]", "") != null) {
                 ElementValue elementValue = value.copyWithAmount(Integer.parseInt(first.replaceAll("[A-Za-z]", "")));
                 return elementValue;

@@ -175,35 +175,35 @@ public class MultiChemical {
 
 
     public static class elements{
-        public MultiChemical H = MultiChemical.create(new ElementRegistry().getChemicalFromSF("H"), 1);
-        public MultiChemical He = MultiChemical.create(new ElementRegistry().getChemicalFromSF("He"), 1);
-        public MultiChemical Li = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Li"), 1);
-        public MultiChemical Be = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Be"), 1);
-        public MultiChemical B = MultiChemical.create(new ElementRegistry().getChemicalFromSF("B"), 1);
-        public MultiChemical C = MultiChemical.create(new ElementRegistry().getChemicalFromSF("C"), 1);
-        public MultiChemical N = MultiChemical.create(new ElementRegistry().getChemicalFromSF("N"), 1);
-        public MultiChemical O = MultiChemical.create(new ElementRegistry().getChemicalFromSF("O"), 1);
-        public MultiChemical F = MultiChemical.create(new ElementRegistry().getChemicalFromSF("F"), 1);
-        public MultiChemical Ne = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Ne"), 1);
-        public MultiChemical Na = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Na"), 1);
-        public MultiChemical Mg = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Mg"), 1);
-        public MultiChemical Al = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Al"), 1);
-        public MultiChemical Si = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Si"), 1);
-        public MultiChemical P = MultiChemical.create(new ElementRegistry().getChemicalFromSF("P"), 1);
-        public MultiChemical S = MultiChemical.create(new ElementRegistry().getChemicalFromSF("S"), 1);
-        public MultiChemical Cl = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Cl"), 1);
-        public MultiChemical Ar = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Ar"), 1);
-        public MultiChemical K = MultiChemical.create(new ElementRegistry().getChemicalFromSF("K"), 1);
-        public MultiChemical Ca = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Ca"), 1);
-        public MultiChemical Sc = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Sc"), 1);
-        public MultiChemical Ti = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Ti"), 1);
-        public MultiChemical V = MultiChemical.create(new ElementRegistry().getChemicalFromSF("V"), 1);
-        public MultiChemical Cr = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Cr"), 1);
-        public MultiChemical Mn = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Mn"), 1);
-        public MultiChemical Fe = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Fe"), 1);
-        public MultiChemical Co = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Co"), 1);
-        public MultiChemical Ni = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Ni"), 1);
-        public MultiChemical Cu = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Cu"), 1);
-        public MultiChemical Zn = MultiChemical.create(new ElementRegistry().getChemicalFromSF("Zn"), 1);
+        public MultiChemical H = MultiChemical.create(ElementRegistry.getChemicalFromSF("H"), 1);
+        public MultiChemical He = MultiChemical.create(ElementRegistry.getChemicalFromSF("He"), 1);
+        public MultiChemical Li = MultiChemical.create(ElementRegistry.getChemicalFromSF("Li"), 1);
+        public MultiChemical Be = MultiChemical.create(ElementRegistry.getChemicalFromSF("Be"), 1);
+        public MultiChemical B = MultiChemical.create(ElementRegistry.getChemicalFromSF("B"), 1);
+        public MultiChemical C = MultiChemical.create(ElementRegistry.getChemicalFromSF("C"), 1);
+        public MultiChemical N = MultiChemical.create(ElementRegistry.getChemicalFromSF("N"), 1);
+        public MultiChemical O = MultiChemical.create(ElementRegistry.getChemicalFromSF("O"), 1);
+        public MultiChemical F = MultiChemical.create(ElementRegistry.getChemicalFromSF("F"), 1);
+        public MultiChemical Ne = MultiChemical.create(ElementRegistry.getChemicalFromSF("Ne"), 1);
+        public MultiChemical Na = MultiChemical.create(ElementRegistry.getChemicalFromSF("Na"), 1);
+        public MultiChemical Mg = MultiChemical.create(ElementRegistry.getChemicalFromSF("Mg"), 1);
+        public MultiChemical Al = MultiChemical.create(ElementRegistry.getChemicalFromSF("Al"), 1);
+        public MultiChemical Si = MultiChemical.create(ElementRegistry.getChemicalFromSF("Si"), 1);
+        public MultiChemical P = MultiChemical.create(ElementRegistry.getChemicalFromSF("P"), 1);
+        public MultiChemical S = MultiChemical.create(ElementRegistry.getChemicalFromSF("S"), 1);
+        public MultiChemical Cl = MultiChemical.create(ElementRegistry.getChemicalFromSF("Cl"), 1);
+        public MultiChemical Ar = MultiChemical.create(ElementRegistry.getChemicalFromSF("Ar"), 1);
+        public MultiChemical K = MultiChemical.create(ElementRegistry.getChemicalFromSF("K"), 1);
+        public MultiChemical Ca = MultiChemical.create(ElementRegistry.getChemicalFromSF("Ca"), 1);
+        public MultiChemical Sc = MultiChemical.create(ElementRegistry.getChemicalFromSF("Sc"), 1);
+        public MultiChemical Ti = MultiChemical.create(ElementRegistry.getChemicalFromSF("Ti"), 1);
+        public MultiChemical V = MultiChemical.create(ElementRegistry.getChemicalFromSF("V"), 1);
+        public MultiChemical Cr = MultiChemical.create(ElementRegistry.getChemicalFromSF("Cr"), 1);
+        public MultiChemical Mn = MultiChemical.create(ElementRegistry.getChemicalFromSF("Mn"), 1);
+        public MultiChemical Fe = MultiChemical.create(ElementRegistry.getChemicalFromSF("Fe"), 1);
+        public MultiChemical Co = MultiChemical.create(ElementRegistry.getChemicalFromSF("Co"), 1);
+        public MultiChemical Ni = MultiChemical.create(ElementRegistry.getChemicalFromSF("Ni"), 1);
+        public MultiChemical Cu = MultiChemical.create(ElementRegistry.getChemicalFromSF("Cu"), 1);
+        public MultiChemical Zn = MultiChemical.create(ElementRegistry.getChemicalFromSF("Zn"), 1);
     }
 }

@@ -22,23 +22,23 @@ public class Rules
     HashMap<ChemicalValue, Rule> ruleMap = new HashMap<ChemicalValue, Rule>();
 
     public Rules(){
-        add(new ElementRegistry().getChemicalFromSF("Cu"), new RuleShell(new int[] {2, 8, 18, 1, 0, 0, 0}));
-        add(new ElementRegistry().getChemicalFromSF("Ag"), new RuleShell(new int[] {2, 8, 18, 18, 1, 0, 0}));
-        add(new ElementRegistry().getChemicalFromSF("Au"), new RuleShell(new int[] {2, 8, 18, 32, 18, 1, 0}));
-        add(new ElementRegistry().getChemicalFromSF("Rg"), new RuleShell(new int[] {2, 8, 18, 32, 32, 18, 1}));
+        add(ElementRegistry.getChemicalFromSF("Cu"), new RuleShell(new int[] {2, 8, 18, 1, 0, 0, 0}));
+        add(ElementRegistry.getChemicalFromSF("Ag"), new RuleShell(new int[] {2, 8, 18, 18, 1, 0, 0}));
+        add(ElementRegistry.getChemicalFromSF("Au"), new RuleShell(new int[] {2, 8, 18, 32, 18, 1, 0}));
+        add(ElementRegistry.getChemicalFromSF("Rg"), new RuleShell(new int[] {2, 8, 18, 32, 32, 18, 1}));
 
-        add(new ElementRegistry().getChemicalFromSF("Cr"), new RuleShell(new int[] {2, 8, 13, 1, 0, 0, 0}));
-        add(new ElementRegistry().getChemicalFromSF("Mo"), new RuleShell(new int[] {2, 8, 18, 13, 1, 0, 0}));
-        add(new ElementRegistry().getChemicalFromSF("W"), new RuleShell(new int[] {2, 8, 18, 32, 12, 2, 0}));
-        add(new ElementRegistry().getChemicalFromSF("Sg"), new RuleShell(new int[] {2, 8, 18, 32, 32, 12, 2}));
+        add(ElementRegistry.getChemicalFromSF("Cr"), new RuleShell(new int[] {2, 8, 13, 1, 0, 0, 0}));
+        add(ElementRegistry.getChemicalFromSF("Mo"), new RuleShell(new int[] {2, 8, 18, 13, 1, 0, 0}));
+        add(ElementRegistry.getChemicalFromSF("W"), new RuleShell(new int[] {2, 8, 18, 32, 12, 2, 0}));
+        add(ElementRegistry.getChemicalFromSF("Sg"), new RuleShell(new int[] {2, 8, 18, 32, 32, 12, 2}));
 
-        add(new ElementRegistry().getChemicalFromSF("H"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("N"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("O"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("F"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("Cl"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("I"), new RuleDiatomic());
-        add(new ElementRegistry().getChemicalFromSF("Br"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("H"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("N"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("O"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("F"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("Cl"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("I"), new RuleDiatomic());
+        add(ElementRegistry.getChemicalFromSF("Br"), new RuleDiatomic());
     }
 
     public void add(ChemicalValue chem, Rule rule){

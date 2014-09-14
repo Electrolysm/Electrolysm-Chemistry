@@ -60,10 +60,10 @@ public class ItemChemicalTestTube extends ItemBase {
 
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        HashMap<String, ElementValue> map = new ElementRegistry().SFMap;
+        HashMap<String, ElementValue> map = ElementRegistry.SFMap;
         for (Map.Entry<String, ElementValue> set : map.entrySet()) {
             ItemStack stack = new ItemStack(this);
-            stack.stackTagCompound = MultiChemical.create(new ElementRegistry().getChemicalFromSF(set.getKey()), 1).writeToNBT();
+            stack.stackTagCompound = MultiChemical.create(ElementRegistry.getChemicalFromSF(set.getKey()), 1).writeToNBT();
             list.add(stack);
         }
     }
