@@ -33,7 +33,7 @@ import net.minecraft.item.ItemStack;
  * to the code.
  */
 
-@Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION/*, dependencies = "required-after:Electrolysm"*/)
+@Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION, dependencies = "required-after:Electrolysm@1.2.42")
 public class Chemistry {
 
     public static CreativeTabs creativeTab = new ChemistryTab(CreativeTabs.getNextID(), Referance.MOD_REF.MOD_ID);

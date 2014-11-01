@@ -11,7 +11,7 @@ import java.util.List;
 public class Chemicals
 {
     public static List<ElementValue> C6H12O6 = Arrays.asList(ElementRegistry.getChemicalFromSF("C").copyWithAmount(6),
-            ElementRegistry.getChemicalFromSF("H").copyWithAmount(10),
+            ElementRegistry.getChemicalFromSF("H").copyWithAmount(12),
             ElementRegistry.getChemicalFromSF("O").copyWithAmount(6));
 
 

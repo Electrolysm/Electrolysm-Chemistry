@@ -86,13 +86,13 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
         ItemStack input = this.getStackInSlot(0);
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if (input != null) {
-            List<MultiChemicalWeight> chemList = ChemicalSeparation.getProducts(input);
             Random random = new Random();
-            if(testTubes != null && testTubes.stackSize >= 1 && input != null && chemList != null && chemList.size() > 0) {
+            if(testTubes != null && testTubes.stackSize >= 1 && input != null) {
                 if(timer == maxTime) {
                     timer = 0;
                     if(random.nextInt(10) <= 4) {
-                        if (!(input.getItem() instanceof ItemChemicalTestTube)) {
+                        List<MultiChemicalWeight> chemList = ChemicalSeparation.getProducts(input);
+                        if (!(input.getItem() instanceof ItemChemicalTestTube) && chemList != null && chemList.size() > 0) {
                             this.produce(chemList, random);
                         } else if (input.getItem() instanceof ItemChemicalTestTube) {
                             MultiChemical chem = ((ItemChemicalTestTube) input.getItem()).getChemical(input);
@@ -113,6 +113,7 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
     }
 
     private void produce(List<ElementValue> elementList) {
+        System.out.println(elementList);
         for (int j = 0; j < elementList.size(); j++) {
             ItemStack itemChem = ChemicalSeparation.createItemStack(elementList.get(j), 1, elementList.get(j).amount);
             for (int i = 0; i < 9; i++) {
@@ -121,7 +122,7 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
                     decrStackSize(0, 1);
                     decrStackSize(1, 1);
                     break;
-                } else if (this.getStackInSlot(i + 2).stackSize < 64){
+                } else if (this.getStackInSlot(i + 2).stackSize < 64) {
                     if (this.getStackInSlot(i + 2).isItemEqual(itemChem) &&
                             this.getStackInSlot(i + 2).stackTagCompound.equals(itemChem.getTagCompound())) {
                         setInventorySlotContents(i + 2,
@@ -130,11 +131,8 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
                         decrStackSize(1, 1);
                         break;
                     }
-                } else {
-                    //break;
                 }
             }
-            return;
         }
     }
 

@@ -26,10 +26,7 @@ public class Reader
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
 
-                // use comma as separator
                 String[] fuel = line.split(",");
-
-                System.out.println("name= " + fuel[0] + ", fuelValue= " + fuel[1]);
 
                 if(fuel[0].equals(fuelName)){
                     return Integer.parseInt(fuel[1]);

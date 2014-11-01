@@ -19,6 +19,7 @@ public class Names
         public static final String ATOMIC_COMPRESSOR = "atomicCompressor";
         public static final String BB_GAS = "bbGas";
         public static final String BB_ELECTRIC = "bbElectric";
+        public static final String CLEANER = "cleaner";
     }
 
     public static class Items {

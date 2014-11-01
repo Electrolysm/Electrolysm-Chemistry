@@ -26,6 +26,7 @@ public class ItemRendererBunsenBurner extends ItemRenderBase {
 
     public ItemRendererBunsenBurner(int i) {
         super();
+        meta = i;
     }
 
     @Override

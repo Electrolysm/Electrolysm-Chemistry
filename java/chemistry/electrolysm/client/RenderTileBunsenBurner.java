@@ -53,6 +53,7 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
                 model.renderTestTube(0.0625F);
             }
         }
+        GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
 
