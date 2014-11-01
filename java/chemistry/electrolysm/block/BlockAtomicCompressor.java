@@ -2,8 +2,7 @@ package chemistry.electrolysm.block;
 
 import chemistry.electrolysm.block.te.TileEntityAtomicCompressor;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.BlockMachineBase;
-import net.minecraft.block.Block;
+import chemistry.electrolysm.util.BlockMachineBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

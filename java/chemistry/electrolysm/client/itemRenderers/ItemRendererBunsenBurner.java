@@ -2,10 +2,8 @@ package chemistry.electrolysm.client.itemRenderers;
 
 import chemistry.electrolysm.client.ModelBunsenBurner;
 import chemistry.electrolysm.proxy.CommonProxy;
-import chemistry.electrolysm.until.ItemRenderBase;
+import chemistry.electrolysm.util.ItemRenderBase;
 import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.client.model.ModelBase;
-import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**

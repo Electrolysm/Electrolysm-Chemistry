@@ -1,21 +1,17 @@
 package chemistry.electrolysm.items;
 
 import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
-import chemistry.electrolysm.chemicals.QuantumEnergyLevels.EnergyLevels;
-import chemistry.electrolysm.chemicals.QuantumEnergyLevels.LevelApplication;
-import chemistry.electrolysm.chemicals.QuantumEnergyLevels.LevelCalculator;
 import chemistry.electrolysm.chemicals.Values.ElementValue;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
 import chemistry.electrolysm.handlers.ColourEnumHelper;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.ItemBase;
+import chemistry.electrolysm.util.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import javax.lang.model.element.Element;
 import java.util.*;
 
 /**

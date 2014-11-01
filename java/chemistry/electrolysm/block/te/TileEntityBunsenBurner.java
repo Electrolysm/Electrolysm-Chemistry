@@ -1,18 +1,16 @@
 package chemistry.electrolysm.block.te;
 
-import chemistry.electrolysm.Chemistry;
 import chemistry.electrolysm.chemicals.ChemicalSeparation;
 import chemistry.electrolysm.chemicals.Core.Reaction;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
+import chemistry.electrolysm.handlers.Reader;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.TileEntityInventory;
-import net.minecraft.init.Blocks;
+import chemistry.electrolysm.util.TileEntityInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Clarky158 on 15/08/2014.
@@ -81,8 +79,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
         if(active || !active){
             double temp = getTemp();
             fuelTick = getFuelRate(temp);
-            System.out.println(fuelCount);
-            if(fuelTick != 0 && this.getStackInSlot(4) != null){
+            if(fuelTick != 0 && this.getStackInSlot(4) != null && this.isFuelValid(this.getStackInSlot(4))){
                 if(fuelTimer >= fuelTick){
                     fuelTimer = 0;
                     fuelCount++;
@@ -106,6 +103,9 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             this.setInventorySlotContents(3, ChemicalSeparation.createItemStack(reaction.outputs.get(1), reaction.outputs.get(1).amountOfAtoms));
             decrStackSize(0, chem1.amountOfAtoms);
             fuelCount -= getTemp() / 8;
+            System.out.println(getTemp() / 8);
+            System.out.println(fuelCount);
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         } else if (this.getStackInSlot(0) != null && this.getStackInSlot(1) != null && this.getStackInSlot(0).stackTagCompound != null
                 && this.getStackInSlot(1).stackTagCompound != null) {
@@ -124,7 +124,15 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             decrStackSize(0, chem1.amountOfAtoms);
             decrStackSize(1, chem2.amountOfAtoms);
             fuelCount -= getTemp() / 8;
+            System.out.println(getTemp() / 8);
+            System.out.println(fuelCount);
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         }
+    }
+
+
+    public boolean isFuelValid(ItemStack stack){
+        return Reader.getFuelValue(stack) != 0;
     }
 
     private double getFuelRate(double temp) {

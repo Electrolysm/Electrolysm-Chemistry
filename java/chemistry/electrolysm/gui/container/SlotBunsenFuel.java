@@ -17,7 +17,7 @@ public class SlotBunsenFuel extends Slot {
     @Override
     public boolean isItemValid(ItemStack stack) {
         if(stack != null && stack.getItem() != null){
-            return stack.getItem() instanceof ItemCoal;
+            return true;//stack.getItem() instanceof ItemCoal;
         }
         return super.isItemValid(stack);
     }

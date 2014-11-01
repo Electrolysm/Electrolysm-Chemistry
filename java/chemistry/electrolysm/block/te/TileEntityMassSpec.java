@@ -1,23 +1,20 @@
 package chemistry.electrolysm.block.te;
 
-import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
 import chemistry.electrolysm.chemicals.ChemicalSeparation;
 import chemistry.electrolysm.chemicals.MultiChemicalWeight;
 import chemistry.electrolysm.chemicals.Values.CompoundValue;
 import chemistry.electrolysm.chemicals.Values.ElementValue;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
+import chemistry.electrolysm.handlers.Energy;
 import chemistry.electrolysm.items.ItemChemicalTestTube;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.reference.Referance;
-import chemistry.electrolysm.until.TileEntityInventory;
+import chemistry.electrolysm.util.TileEntityEnergyInventory;
+import chemistry.electrolysm.util.TileEntityInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import scala.actors.threadpool.Arrays;
-import scala.reflect.api.Types;
 
 import java.util.List;
 import java.util.Random;
@@ -32,7 +29,7 @@ import java.util.Random;
  * and you have certain rights with respective
  * to the code.
  */
-public class TileEntityMassSpec extends TileEntityInventory
+public class TileEntityMassSpec extends TileEntityEnergyInventory
 {
     public TileEntityMassSpec(){
         super(11);
@@ -77,8 +74,10 @@ public class TileEntityMassSpec extends TileEntityInventory
             status = STATUS_FULL;
         } else if (timer > 0) {
             status = STATUS_WORKING;
-        } else if (false) { //power check
+        }
+        if(!this.canWork(Energy.massSpec)){
             status = STATUS_ENERGY;
+            return;
         }
 
         lastChem = chem;

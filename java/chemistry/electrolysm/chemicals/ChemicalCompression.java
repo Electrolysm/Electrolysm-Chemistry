@@ -1,6 +1,6 @@
 package chemistry.electrolysm.chemicals;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import chemistry.electrolysm.chemicals.Values.ChemicalValue;
 import chemistry.electrolysm.chemicals.Values.MultiChemical;
 import net.minecraft.init.Items;

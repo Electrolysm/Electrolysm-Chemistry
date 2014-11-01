@@ -1,5 +1,6 @@
 package chemistry.electrolysm;
 
+import chemistry.electrolysm.block.multiblock.PatternLoader;
 import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
 import chemistry.electrolysm.chemicals.ChemicalSeparation;
 import chemistry.electrolysm.handlers.GuiHandler;
@@ -19,9 +20,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 
 /**
  * Created by Clarky158 on 15/08/2014.
@@ -55,6 +54,7 @@ public class Chemistry {
         MessageRegistry.init();
         new ElementRegistry(event);
         new ChemicalSeparation(event);
+        PatternLoader.addPatterns();
     }
 
     @SideOnly(Side.CLIENT)

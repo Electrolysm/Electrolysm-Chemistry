@@ -1,8 +1,7 @@
 package chemistry.electrolysm.items;
 
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.ItemBase;
-import net.minecraft.item.Item;
+import chemistry.electrolysm.util.ItemBase;
 
 /**
  * Created by Clarky158 on 15/08/2014.

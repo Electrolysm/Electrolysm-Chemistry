@@ -16,6 +16,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
 {
     int x, y, z;
     double temp;
+    int fuel;
     boolean hasStand;
 
     public MessageBunsenBurner(TileEntityBunsenBurner te){
@@ -24,6 +25,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
         z = te.zCoord;
         temp = te.getTemp();
         hasStand = te.hasStand();
+        fuel = te.fuelCount;
     }
 
     public MessageBunsenBurner(){ }
@@ -35,6 +37,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
         z = buf.readInt();
         temp = buf.readDouble();
         hasStand = buf.readBoolean();
+        fuel = buf.readInt();
     }
 
     @Override
@@ -44,6 +47,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
         buf.writeInt(z);
         buf.writeDouble(temp);
         buf.writeBoolean(hasStand);
+        buf.writeInt(fuel);
     }
 
     @Override
@@ -54,6 +58,7 @@ public class MessageBunsenBurner implements IMessage, IMessageHandler<MessageBun
             {
                 ((TileEntityBunsenBurner) te).setHasStand(msg.hasStand);
                 ((TileEntityBunsenBurner) te).setTemperature(msg.temp);
+                ((TileEntityBunsenBurner) te).fuelCount = msg.fuel;
             }
         }
         return null;

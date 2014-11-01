@@ -1,6 +1,6 @@
 package chemistry.electrolysm.chemicals;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import chemistry.electrolysm.chemicals.Chem.ElementRegistry;
 import chemistry.electrolysm.chemicals.Values.Chemicals;
 import chemistry.electrolysm.chemicals.Values.CompoundValue;

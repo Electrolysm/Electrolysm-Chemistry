@@ -1,9 +1,9 @@
 package chemistry.electrolysm.block.te;
 
+import chemistry.electrolysm.block.multiblock.MultiBlockHelper;
 import chemistry.electrolysm.chemicals.ChemicalCompression;
-import chemistry.electrolysm.until.TileEntityInventory;
+import chemistry.electrolysm.util.TileEntityInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Clarky158 on 07/09/2014.
@@ -31,6 +31,14 @@ public class TileEntityAtomicCompressor extends TileEntityInventory {
 
         ItemStack[] stackArray = this.getStackArray();
         ItemStack product = new ChemicalCompression().getProduct(stackArray);
+
+        //MultiBlockCode
+        this.multiBlock();
+    }
+
+    private void multiBlock() {
+        boolean check = MultiBlockHelper.isPartOfMultiBlock(worldObj, xCoord, yCoord, zCoord);
+        System.out.println(check);
     }
 
     private ItemStack[] getStackArray() {

@@ -4,7 +4,6 @@ import chemistry.electrolysm.items.ItemChemicalTestTube;
 import chemistry.electrolysm.items.ItemStand;
 import chemistry.electrolysm.items.ItemTestTube;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.ItemBase;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 

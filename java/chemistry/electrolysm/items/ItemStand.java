@@ -4,9 +4,8 @@ import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
 import chemistry.electrolysm.handlers.network.MessageRegistry;
 import chemistry.electrolysm.handlers.network.message.MessageBunsenBurner;
 import chemistry.electrolysm.reference.Names;
-import chemistry.electrolysm.until.ItemBase;
+import chemistry.electrolysm.util.ItemBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

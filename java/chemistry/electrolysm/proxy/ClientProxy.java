@@ -2,14 +2,12 @@ package chemistry.electrolysm.proxy;
 
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
 import chemistry.electrolysm.block.te.TileEntityMassSpec;
-import chemistry.electrolysm.client.ModelMassSpec;
 import chemistry.electrolysm.client.RenderTileBunsenBurner;
 import chemistry.electrolysm.client.RenderTileMassSpec;
 import chemistry.electrolysm.client.itemRenderers.ItemRendererBunsenBurner;
 import chemistry.electrolysm.client.itemRenderers.ItemRendererTripod;
 import chemistry.electrolysm.init.ModBlocks;
 import chemistry.electrolysm.init.ModItems;
-import chemistry.electrolysm.until.ItemRenderBase;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
