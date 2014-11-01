@@ -17,6 +17,8 @@ public class Names
         public static final String BUNSEN_BURNER = "bunsenBurner";
         public static final String PHOSPHORUS_TORCH = "phosphorusTorch";
         public static final String ATOMIC_COMPRESSOR = "atomicCompressor";
+        public static final String BB_GAS = "bbGas";
+        public static final String BB_ELECTRIC = "bbElectric";
     }
 
     public static class Items {

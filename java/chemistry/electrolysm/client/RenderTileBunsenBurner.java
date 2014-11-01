@@ -1,8 +1,11 @@
 package chemistry.electrolysm.client;
 
+import chemistry.electrolysm.block.BlockBBElectric;
+import chemistry.electrolysm.block.BlockBBGas;
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
 import chemistry.electrolysm.proxy.CommonProxy;
 import chemistry.electrolysm.reference.Names;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -33,7 +36,15 @@ public class RenderTileBunsenBurner extends TileEntitySpecialRenderer {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         rotateByMeta(tileEntity.getBlockMetadata());
-        bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);
+
+        Block block = tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+        if(block instanceof BlockBBElectric){
+            bindTexture(CommonProxy.MODEL_BB_ELECTRIC);
+        } else if (block instanceof BlockBBGas){
+            bindTexture(CommonProxy.MODEL_BB_GAS);
+        } else {
+            bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);
+        }
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         model.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         if(renderTripod){

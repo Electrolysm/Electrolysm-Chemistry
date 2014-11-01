@@ -1,5 +1,7 @@
 package chemistry.electrolysm.client.itemRenderers;
 
+import chemistry.electrolysm.block.BlockBBElectric;
+import chemistry.electrolysm.block.BlockBBGas;
 import chemistry.electrolysm.client.ModelBunsenBurner;
 import chemistry.electrolysm.proxy.CommonProxy;
 import chemistry.electrolysm.util.ItemRenderBase;
@@ -20,8 +22,9 @@ public class ItemRendererBunsenBurner extends ItemRenderBase {
 
 
     ModelBunsenBurner model = new ModelBunsenBurner();
+    int meta;
 
-    public ItemRendererBunsenBurner() {
+    public ItemRendererBunsenBurner(int i) {
         super();
     }
 
@@ -31,8 +34,14 @@ public class ItemRendererBunsenBurner extends ItemRenderBase {
         GL11.glPushMatrix();
         GL11.glTranslatef(x, y, z);
         GL11.glTranslatef(0.2F, 1F, 0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);
 
+        if(meta == 0){
+            FMLClientHandler.instance().getClient().renderEngine.bindTexture(CommonProxy.MODEL_BB_GAS);
+        } else if (meta == 1){
+            FMLClientHandler.instance().getClient().renderEngine.bindTexture(CommonProxy.MODEL_BB_ELECTRIC);
+        } else {
+            FMLClientHandler.instance().getClient().renderEngine.bindTexture(CommonProxy.MODEL_BUNSEN_BURNER);
+        }
         GL11.glPushMatrix();
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         // Render

@@ -82,7 +82,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
             if(fuelTick != 0 && this.getStackInSlot(4) != null && this.isFuelValid(this.getStackInSlot(4))){
                 if(fuelTimer >= fuelTick){
                     fuelTimer = 0;
-                    fuelCount++;
+                    fuelCount += getFuelValue(this.getStackInSlot(4));
                     decrStackSize(4, 1);
                 } else {
                     fuelTimer += 1;
@@ -132,7 +132,11 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
 
     public boolean isFuelValid(ItemStack stack){
-        return Reader.getFuelValue(stack) != 0;
+        return getFuelValue(stack) != 0;
+    }
+
+    public int getFuelValue(ItemStack stack){
+        return Reader.getFuelValue(stack);
     }
 
     private double getFuelRate(double temp) {

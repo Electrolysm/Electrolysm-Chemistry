@@ -29,6 +29,8 @@ public class ClientProxy extends CommonProxy{
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMassSpec.class, new RenderTileMassSpec());
 
         MinecraftForgeClient.registerItemRenderer(ModItems.stand, new ItemRendererTripod());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.bunsenBurner), new ItemRendererBunsenBurner());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.bbGas), new ItemRendererBunsenBurner(0));
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.bbElectric), new ItemRendererBunsenBurner(1));
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.bunsenBurner), new ItemRendererBunsenBurner(2));
     }
 }

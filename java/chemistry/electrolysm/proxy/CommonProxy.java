@@ -22,6 +22,8 @@ public class CommonProxy
 {
     public static String MOD_ID_LOWER = Referance.MOD_REF.MOD_ID.toLowerCase().replace("electrolysm | ", "");
     public static ResourceLocation MODEL_BUNSEN_BURNER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBunsenBurner.png");
+    public static ResourceLocation MODEL_BB_GAS = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBBGas.png");
+    public static ResourceLocation MODEL_BB_ELECTRIC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBBElectric.png");
     public static ResourceLocation MODEL_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelMassSpec.png");
 
     public static ResourceLocation GUI_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiMassSpec.png");

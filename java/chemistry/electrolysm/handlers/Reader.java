@@ -18,7 +18,8 @@ public class Reader
         String line = "";
         String fuelName = stack.getDisplayName().toLowerCase();
         BufferedReader br = null;
-        Downloader.downloadURL("https://www.google.co.uk", csvFile);
+        Downloader.downloadURL("https://raw.githubusercontent.com/Electrolysm/Electrolysm-Chemistry/master/resources/assets/chemistry/fuelValue.csv",
+                csvFile);
 
         try {
 
