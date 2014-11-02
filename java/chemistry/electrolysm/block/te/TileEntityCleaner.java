@@ -1,22 +1,38 @@
 package chemistry.electrolysm.block.te;
 
+import chemistry.electrolysm.block.BlockWaste;
+import chemistry.electrolysm.init.ModBlocks;
 import chemistry.electrolysm.init.ModItems;
+import chemistry.electrolysm.items.ItemChemicalTestTube;
 import chemistry.electrolysm.util.TileEntityEnergyInventory;
+import com.sun.istack.internal.NotNull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.*;
 
 /**
  * Created by Clarky158 on 01/11/2014.
  */
-public class TileEntityCleaner extends TileEntityEnergyInventory {
+public class TileEntityCleaner extends TileEntityEnergyInventory implements IFluidHandler{
 
     public TileEntityCleaner() {
         super(2);
     }
 
+    int CAPACITY = 1000;
+    int WASTE_AMOUNT = 500;
+    int WATER_AMOUNT = 500;
+    FluidStack FLUID_WASTE = new FluidStack(ModBlocks.fluidWaste, WASTE_AMOUNT);
+
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        //TODO
+        if(slot == 0 && stack != null && stack.getItem() != null){
+            //Input
+            if(stack.getItem() instanceof ItemChemicalTestTube){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -32,6 +48,10 @@ public class TileEntityCleaner extends TileEntityEnergyInventory {
     public void updateEntity() {
         super.updateEntity();
 
+        System.out.println("WaterTank: " + tankWater.getFluidAmount());
+        System.out.println("WasteTank: " + tankWaste.getFluidAmount());
+        this.changeTankValues();
+
         ItemStack input = this.getStackInSlot(0);
         ItemStack output = this.getStackInSlot(1);
         ItemStack tubes = new ItemStack(ModItems.testTube, 1);
@@ -39,7 +59,7 @@ public class TileEntityCleaner extends TileEntityEnergyInventory {
         if(worldObj.isRemote){
             return;
         }
-        if(input != null) {
+        if(input != null && tankCheck()) {
             if (timer >= maxTimer) {
                 timer = 0;
                 if(output == null){
@@ -51,9 +71,85 @@ public class TileEntityCleaner extends TileEntityEnergyInventory {
                     }
                 }
                 this.decrStackSize(0, 1);
+                changeTankValues();
             } else {
                 timer++;
             }
         }
+    }
+
+    private boolean tankCheck() {
+        return (tankWaste.getFluidAmount() + WASTE_AMOUNT) <= tankWaste.getCapacity() &&
+                tankWater.getFluidAmount() >= WATER_AMOUNT;
+    }
+
+    private void changeTankValues() {
+        tankWater.drain(WATER_AMOUNT, true);
+        tankWaste.fill(FLUID_WASTE, true);
+    }
+
+    public FluidTank tankWater = new FluidTank(CAPACITY);
+    public FluidTank tankWaste = new FluidTank(CAPACITY);
+
+    @Override
+    public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+        if(from != ForgeDirection.DOWN && from != ForgeDirection.UP){
+            if(tankWater.getFluid() == null || tankWater.getFluidAmount() == 0){
+                tankWater.setFluid(resource);
+                return resource.amount;
+            }
+            else if(tankWater.getFluid() != null){
+                if(tankWater.getFluid().isFluidEqual(resource) &&
+                        (tankWater.getFluidAmount() + resource.amount) <= tankWater.getCapacity()){
+                    tankWater.setFluid(new FluidStack(resource.getFluid(), tankWater.getFluidAmount() + resource.amount));
+                    return tankWater.getFluidAmount() + resource.amount;
+                }
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+        return null;
+    }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        if(from == ForgeDirection.DOWN){
+            if(tankWaste.getFluidAmount() > maxDrain){
+                tankWaste.setFluid(new FluidStack(tankWaste.getFluid(), tankWaste.getFluidAmount() - maxDrain));
+                return new FluidStack(tankWaste.getFluid(), tankWaste.getFluidAmount() - maxDrain);
+            }
+            else if(tankWaste.getFluidAmount() <= maxDrain){
+                tankWaste.setFluid(null);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean canFill(ForgeDirection from, Fluid fluid) {
+        if(from != ForgeDirection.DOWN && from != ForgeDirection.UP && fluid == FluidRegistry.WATER) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canDrain(ForgeDirection from, Fluid fluid) {
+        if(from == ForgeDirection.DOWN && fluid != FluidRegistry.WATER){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+        if(from == ForgeDirection.DOWN){
+            return new FluidTankInfo[] { tankWaste.getInfo() };
+        }
+        return new FluidTankInfo[] { tankWater.getInfo() };
     }
 }

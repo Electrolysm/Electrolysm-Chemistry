@@ -4,6 +4,8 @@ import chemistry.electrolysm.block.*;
 import chemistry.electrolysm.reference.Names;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 /**
  * Created by Clarky158 on 15/08/2014.
@@ -23,6 +25,10 @@ public class ModBlocks {
     public static Block massSpec = new BlockMassSpec();
     public static BlockPhosphorusTorch phosphorusTorch =  new BlockPhosphorusTorch();
     public static Block atomicCompressor = new BlockAtomicCompressor();
+    public static Block cleaner = new BlockCleaner();
+
+    public static Block waste = new BlockWaste();
+    public static Fluid fluidWaste = new FluidWaste();
 
     public static void init(){
         GameRegistry.registerBlock(bunsenBurner, Names.Block.BUNSEN_BURNER);
@@ -31,5 +37,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(massSpec, Names.Block.MASS_SPEC);
         GameRegistry.registerBlock(phosphorusTorch, Names.Block.PHOSPHORUS_TORCH);
         GameRegistry.registerBlock(atomicCompressor, Names.Block.ATOMIC_COMPRESSOR);
+        GameRegistry.registerBlock(cleaner, Names.Block.CLEANER);
+        GameRegistry.registerBlock(waste, Names.Block.FLUID.WASTE);
     }
 }

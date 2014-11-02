@@ -20,6 +20,10 @@ public class Names
         public static final String BB_GAS = "bbGas";
         public static final String BB_ELECTRIC = "bbElectric";
         public static final String CLEANER = "cleaner";
+
+        public class FLUID {
+            public static final String WASTE = "waste";
+        }
     }
 
     public static class Items {

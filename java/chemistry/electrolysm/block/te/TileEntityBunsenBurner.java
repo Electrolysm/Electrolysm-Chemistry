@@ -63,7 +63,7 @@ public class TileEntityBunsenBurner extends TileEntityInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        //TODO
+        //TODO isItemValidForSlot
         return false;
     }
 

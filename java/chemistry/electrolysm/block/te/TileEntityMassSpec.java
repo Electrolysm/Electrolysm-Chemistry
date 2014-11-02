@@ -37,7 +37,7 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        //TODO
+        //TODO isItemValidForSlot
         return true;
     }
 
@@ -59,7 +59,6 @@ public class TileEntityMassSpec extends TileEntityEnergyInventory
 
     @Override
     public void updateEntity() {
-        //TODO
         super.updateEntity();
 
         if (worldObj.isRemote) {
