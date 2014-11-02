@@ -44,10 +44,10 @@ public class GuiCleaner extends GuiContainer
         int progress = (entity.timer * 40) / entity.maxTimer;
         this.drawTexturedModalRect(x + 60 + 9, y + 33, xSize, 0, progress, 27);
 
-        int water = (entity.tankWater.getFluidAmount() * 47) / entity.tankWater.getCapacity();
-        int waste = (entity.tankWaste.getFluidAmount() * 47) / entity.tankWaste.getCapacity();
+        int water = (entity.tankWater.getFluidAmount() * 48) / entity.tankWater.getCapacity();
+        int waste = (entity.tankWaste.getFluidAmount() * 48) / entity.tankWaste.getCapacity();
 
-        this.drawTexturedModalRect(x + 9, y, 0, ySize, 16, water);
-        this.drawTexturedModalRect(x, y, 16, ySize, 16, waste);
+        this.drawTexturedModalRect(x + 9, y - water + 73, 0, ySize - 10 - water + 48, 16, water + 1);
+        this.drawTexturedModalRect(x + 151, y - waste + 73, 16, ySize - 10 - waste + 48, 16, waste + 1);
     }
 }

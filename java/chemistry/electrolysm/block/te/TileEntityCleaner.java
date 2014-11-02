@@ -26,8 +26,8 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
     }
 
     int CAPACITY = 1000;
-    int WASTE_AMOUNT = 500;
-    int WATER_AMOUNT = 500;
+    int WASTE_AMOUNT = 125;
+    int WATER_AMOUNT = 100;
     FluidStack FLUID_WASTE = new FluidStack(ModBlocks.fluidWaste, WASTE_AMOUNT);
 
     @Override
@@ -79,7 +79,7 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
     }
 
     private boolean tankCheck() {
-        return (tankWaste.getFluidAmount() + WASTE_AMOUNT) <= tankWaste.getCapacity() &&
+        return (tankWaste.getFluidAmount() + WASTE_AMOUNT) <= CAPACITY &&
                 tankWater.getFluidAmount() >= WATER_AMOUNT;
     }
 
