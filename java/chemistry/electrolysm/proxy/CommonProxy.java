@@ -2,6 +2,7 @@ package chemistry.electrolysm.proxy;
 
 import chemistry.electrolysm.block.te.TileEntityAtomicCompressor;
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
+import chemistry.electrolysm.block.te.TileEntityCleaner;
 import chemistry.electrolysm.block.te.TileEntityMassSpec;
 import chemistry.electrolysm.reference.Names;
 import chemistry.electrolysm.reference.Referance;
@@ -25,13 +26,16 @@ public class CommonProxy
     public static ResourceLocation MODEL_BB_GAS = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBBGas.png");
     public static ResourceLocation MODEL_BB_ELECTRIC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelBBElectric.png");
     public static ResourceLocation MODEL_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelMassSpec.png");
+    public static ResourceLocation MODEL_CLEANER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelCleaner.png");
 
     public static ResourceLocation GUI_MASS_SPEC = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiMassSpec.png");
     public static ResourceLocation GUI_BUNSEN_BURNER = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiBunsenBurner.png");
+    public static ResourceLocation GUI_CLEANER = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiCleaner.png");
 
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityBunsenBurner.class, Names.TileEntity.TE_BUNSEN_BURNER);
         GameRegistry.registerTileEntity(TileEntityMassSpec.class, Names.TileEntity.TE_MAS_SPEC);
         GameRegistry.registerTileEntity(TileEntityAtomicCompressor.class, Names.TileEntity.TE_ATOMIC_COMPRESSOR);
+        GameRegistry.registerTileEntity(TileEntityCleaner.class, Names.TileEntity.TE_CLEANER);
     }
 }

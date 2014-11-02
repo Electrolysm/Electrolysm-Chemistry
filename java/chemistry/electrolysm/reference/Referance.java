@@ -20,5 +20,6 @@ public class Referance {
     public static class GUI {
         public static int GUI_MASS_SPEC_ID = 0;
         public static int GUI_BUNSEN_BURNER_ID = 1;
+        public static int GUI_CLEANER_ID = 2;
     }
 }

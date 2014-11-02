@@ -36,6 +36,7 @@ public class Names
         public static final String TE_MAS_SPEC = "TileEntityMassSpec";
         public static final String TE_BUNSEN_BURNER = "TileEntityBunsenBurner";
         public static final String TE_ATOMIC_COMPRESSOR = "TileEntityAtomicCompressor";
+        public static final String TE_CLEANER = "TileEntityCleaner";
     }
 
     public class GUI {

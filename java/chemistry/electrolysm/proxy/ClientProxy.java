@@ -1,8 +1,10 @@
 package chemistry.electrolysm.proxy;
 
 import chemistry.electrolysm.block.te.TileEntityBunsenBurner;
+import chemistry.electrolysm.block.te.TileEntityCleaner;
 import chemistry.electrolysm.block.te.TileEntityMassSpec;
 import chemistry.electrolysm.client.RenderTileBunsenBurner;
+import chemistry.electrolysm.client.RenderTileCleaner;
 import chemistry.electrolysm.client.RenderTileMassSpec;
 import chemistry.electrolysm.client.itemRenderers.ItemRendererBunsenBurner;
 import chemistry.electrolysm.client.itemRenderers.ItemRendererTripod;
@@ -27,6 +29,7 @@ public class ClientProxy extends CommonProxy{
     public static void register(){
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBunsenBurner.class, new RenderTileBunsenBurner());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMassSpec.class, new RenderTileMassSpec());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCleaner.class, new RenderTileCleaner());
 
         MinecraftForgeClient.registerItemRenderer(ModItems.stand, new ItemRendererTripod());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.bbGas), new ItemRendererBunsenBurner(0));

@@ -41,6 +41,7 @@ public abstract class TileEntityInventory extends TileEntity implements IInvento
     @Override
     public ItemStack decrStackSize(int slot, int amount)
     {
+        markDirty();
         ItemStack stack = getStackInSlot(slot);
 
         if (stack != null)
@@ -66,6 +67,7 @@ public abstract class TileEntityInventory extends TileEntity implements IInvento
     @Override
     public ItemStack getStackInSlotOnClosing(int slot)
     {
+        markDirty();
         ItemStack stack = getStackInSlot(slot);
 
         if (stack != null)
@@ -78,6 +80,7 @@ public abstract class TileEntityInventory extends TileEntity implements IInvento
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
+        this.markDirty();
         inventory[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {

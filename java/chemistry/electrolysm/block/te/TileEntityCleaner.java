@@ -7,6 +7,11 @@ import chemistry.electrolysm.items.ItemChemicalTestTube;
 import chemistry.electrolysm.util.TileEntityEnergyInventory;
 import com.sun.istack.internal.NotNull;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -48,14 +53,9 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
     public void updateEntity() {
         super.updateEntity();
 
-        System.out.println("WaterTank: " + tankWater.getFluidAmount());
-        System.out.println("WasteTank: " + tankWaste.getFluidAmount());
-        this.changeTankValues();
-
         ItemStack input = this.getStackInSlot(0);
         ItemStack output = this.getStackInSlot(1);
         ItemStack tubes = new ItemStack(ModItems.testTube, 1);
-
         if(worldObj.isRemote){
             return;
         }
@@ -86,6 +86,7 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
     private void changeTankValues() {
         tankWater.drain(WATER_AMOUNT, true);
         tankWaste.fill(FLUID_WASTE, true);
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     public FluidTank tankWater = new FluidTank(CAPACITY);
@@ -93,6 +94,7 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if(from != ForgeDirection.DOWN && from != ForgeDirection.UP){
             if(tankWater.getFluid() == null || tankWater.getFluidAmount() == 0){
                 tankWater.setFluid(resource);
@@ -151,5 +153,23 @@ public class TileEntityCleaner extends TileEntityEnergyInventory implements IFlu
             return new FluidTankInfo[] { tankWaste.getInfo() };
         }
         return new FluidTankInfo[] { tankWater.getInfo() };
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        tankWater.readFromNBT(pkt.func_148857_g().getCompoundTag("tankWater"));
+        tankWaste.readFromNBT(pkt.func_148857_g().getCompoundTag("tankWaste"));
+        timer = pkt.func_148857_g().getInteger("timer");
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        NBTTagCompound waste = new NBTTagCompound();
+        NBTTagCompound water = new NBTTagCompound();
+        tag.setTag("tankWaste", tankWaste.writeToNBT(waste));
+        tag.setTag("tankWater", tankWater.writeToNBT(water));
+        tag.setInteger("timer", timer);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
     }
 }
